@@ -1,0 +1,2790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>document.documentElement.classList.add('js');</script>
+<title>Coach Circle. Build a Scalable Coaching Business</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9.144,500;0,9.144,600;0,9.144,700;1,9.144,500;1,9.144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy-deep: #0A1628;
+    --navy-mid: #14253E;
+    --navy-soft: #1B2F4D;
+    --ivory: #F5EFE2;
+    --gold: #D4A857;
+    --gold-soft: #E8C97A;
+    --teal-script: #5FD4C4;
+    --emerald: #10B981;
+    --emerald-glow: #34D399;
+  }
+
+  * { -webkit-font-smoothing: antialiased; }
+
+  html, body { background: var(--navy-deep); }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    color: var(--ivory);
+  }.headline {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    line-height: 1.06;
+  }.italic-accent {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    background: linear-gradient(110deg, var(--teal-script) 10%, var(--gold-soft) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }.hero { position: relative; isolation: isolate; }.hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('Assets/Hero%20background.png');
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+  }.hero-overlay {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 35%, rgba(212, 168, 87, 0.10), transparent 70%),
+      linear-gradient(180deg,
+        rgba(10, 22, 40, 0.92) 0%,
+        rgba(10, 22, 40, 0.85) 50%,
+        rgba(10, 22, 40, 0.92) 100%);
+    z-index: -1;
+  }
+
+  /* gold halo arc behind coach.wildcard, echoes Coach Circle logo */.halo-arc {
+    position: absolute;
+    top: 28%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px; height: 300px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    opacity: 0.32;
+    pointer-events: none;
+    box-shadow: 0 0 80px rgba(212, 168, 87, 0.18) inset;
+  }
+  @media (min-width: 640px) {.halo-arc { width: 380px; height: 380px; }
+  }
+  @media (min-width: 1024px) {.halo-arc { width: 440px; height: 440px; top: 30%; }
+  }
+  @media (min-width: 1280px) {.halo-arc { width: 500px; height: 500px; top: 30%; }
+  }
+
+  /* coach portrait.clean PNG cutout, anchored bottom-right */.coach-img {
+    filter:
+      drop-shadow(0 40px 60px rgba(0, 0, 0, 0.55))
+      drop-shadow(0 0 60px rgba(212, 168, 87, 0.14));
+  }
+
+  /* CTA */.cta-pill {
+    background: linear-gradient(180deg, var(--emerald-glow) 0%, var(--emerald) 100%);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.35) inset,
+      0 0 0 1px rgba(16, 185, 129, 0.4),
+      0 14px 36px -10px rgba(16, 185, 129, 0.55),
+      0 4px 0 rgba(6, 78, 59, 0.35);
+    transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 220ms;
+  }.cta-pill:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.4) inset,
+      0 0 0 1px rgba(16, 185, 129, 0.5),
+      0 20px 44px -10px rgba(16, 185, 129, 0.65),
+      0 4px 0 rgba(6, 78, 59, 0.35);
+  }.cta-pill:active { transform: translateY(0); }.cta-pill:focus-visible { outline: 2px solid var(--ivory); outline-offset: 4px; }
+
+  /* eyebrow chip */.eyebrow {
+    border: 1px solid rgba(212, 168, 87, 0.42);
+    background: rgba(20, 37, 62, 0.45);
+    backdrop-filter: blur(6px);
+  }
+
+  /* trust-signals box */.trust-box {
+    background: linear-gradient(180deg, rgba(20, 37, 62, 0.7) 0%, rgba(10, 22, 40, 0.55) 100%);
+    border: 1px solid rgba(212, 168, 87, 0.28);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.5);
+  }.trust-divider {
+    width: 1px;
+    height: 18px;
+    background: linear-gradient(180deg, transparent, rgba(212, 168, 87, 0.35), transparent);
+    flex-shrink: 0;
+  }
+
+  /* social proof badge.stacked avatars */.proof-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }.proof-avatars {
+    display: inline-flex;
+    align-items: center;
+  }.proof-avatars img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #0A1628;
+    margin-left: -10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transition: transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }.proof-avatars img:first-child { margin-left: 0; }.proof-avatars:hover img { transform: translateY(-2px); }.proof-avatars img:nth-child(1):hover ~ img { transform: translateX(4px); }
+
+  /* BIG bonus card (premium offer showcase) */.bonus-card {
+    position: relative;
+    border-radius: 1.5rem;
+    background: linear-gradient(180deg, rgba(20, 37, 62, 0.65) 0%, rgba(10, 22, 40, 0.5) 100%);
+    border: 1px solid rgba(212, 168, 87, 0.28);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.06) inset,
+      0 32px 64px -28px rgba(0, 0, 0, 0.55),
+      0 0 80px -20px rgba(212, 168, 87, 0.14);
+    overflow: hidden;
+  }.bonus-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 8%, rgba(212, 168, 87, 0.65) 50%, rgba(212, 168, 87, 0.95) 92%, transparent 100%);
+  }.bonus-card::after {
+    content: '';
+    position: absolute;
+    top: -2px; right: 14%;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold-soft);
+    box-shadow: 0 0 12px var(--gold);
+  }.bonus-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(212, 168, 87, 0.28) 0%, rgba(212, 168, 87, 0.08) 100%);
+    border: 1px solid rgba(212, 168, 87, 0.5);
+    color: var(--gold-soft);
+    flex-shrink: 0;
+    box-shadow: 0 0 24px -6px rgba(212, 168, 87, 0.35);
+  }.bonus-mini {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }.bonus-mini-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(212, 168, 87, 0.1);
+    border: 1px solid rgba(212, 168, 87, 0.32);
+    color: var(--gold-soft);
+    flex-shrink: 0;
+  }
+
+  /* urgency strip */.urgency {
+    border: 1px solid rgba(212, 168, 87, 0.38);
+    background: linear-gradient(180deg, rgba(20, 37, 62, 0.65), rgba(10, 22, 40, 0.55));
+    backdrop-filter: blur(8px);
+    box-shadow: 0 12px 40px -16px rgba(0, 0, 0, 0.6);
+  }.urgency u {
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--gold);
+    padding-bottom: 1px;
+    color: var(--gold-soft);
+  }.checkmark { color: var(--gold-soft); font-weight: 700; }.nav-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 4px; }
+
+  /* load anim */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }.fade-1 { animation: fadeUp 700ms cubic-bezier(0.16, 1, 0.3, 1)   0ms both; }.fade-2 { animation: fadeUp 700ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both; }.fade-3 { animation: fadeUp 700ms cubic-bezier(0.16, 1, 0.3, 1) 240ms both; }.fade-4 { animation: fadeUp 700ms cubic-bezier(0.16, 1, 0.3, 1) 360ms both; }.fade-5 { animation: fadeUp 700ms cubic-bezier(0.16, 1, 0.3, 1) 480ms both; }
+
+  @media (prefers-reduced-motion: reduce) {.fade-1,.fade-2,.fade-3,.fade-4,.fade-5 { animation: none; }
+  }
+
+  /* ===== REASONS SECTION ===== */.reasons {
+    position: relative;
+    isolation: isolate;
+    background: #050D24;
+  }.reasons-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 15%, rgba(16, 185, 129, 0.18) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 60% at 80% 85%, rgba(30, 58, 138, 0.40) 0%, transparent 60%),
+      radial-gradient(ellipse 90% 40% at 50% 100%, rgba(11, 110, 79, 0.25) 0%, transparent 60%),
+      linear-gradient(135deg, #050D24 0%, #0A1A3A 50%, #0B2B3A 100%);
+  }.reasons-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }.glass-card {
+    position: relative;
+    padding: 2rem 1.75rem;
+    border-radius: 1.25rem;
+    background: linear-gradient(180deg, rgba(20, 37, 62, 0.42) 0%, rgba(10, 22, 40, 0.28) 100%);
+    border: 1px solid rgba(245, 239, 226, 0.08);
+    backdrop-filter: blur(24px) saturate(135%);
+    -webkit-backdrop-filter: blur(24px) saturate(135%);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.05) inset,
+      0 28px 56px -24px rgba(0, 0, 0, 0.5);
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), border-color 320ms, box-shadow 320ms;
+  }.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+    border-radius: 1.25rem 1.25rem 0 0;
+  }.glass-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(95, 212, 196, 0.32);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.08) inset,
+      0 32px 64px -20px rgba(0, 0, 0, 0.6),
+      0 0 48px -12px rgba(95, 212, 196, 0.18);
+  }.glass-card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(95, 212, 196, 0.08);
+    border: 1px solid rgba(95, 212, 196, 0.42);
+    color: var(--teal-script);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 24px -8px rgba(95, 212, 196, 0.25);
+  }.card-number {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.75rem;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: rgba(212, 168, 87, 0.55);
+    pointer-events: none;
+  }.label-gold {
+    color: var(--gold);
+  }.label-emerald {
+    color: var(--emerald-glow);
+  }
+
+  /* ===== COST SECTION (negative samples) ===== */.cost-section {
+    position: relative;
+    isolation: isolate;
+    background: #050D24;
+  }.cost-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 15%, rgba(16, 185, 129, 0.18) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 60% at 80% 85%, rgba(30, 58, 138, 0.40) 0%, transparent 60%),
+      radial-gradient(ellipse 90% 40% at 50% 100%, rgba(11, 110, 79, 0.25) 0%, transparent 60%),
+      linear-gradient(135deg, #050D24 0%, #0A1A3A 50%, #0B2B3A 100%);
+  }.cost-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  /* eyebrow variant. danger/red */.eyebrow-danger {
+    border: 1px solid rgba(239, 68, 68, 0.42);
+    background: rgba(127, 29, 29, 0.18);
+    backdrop-filter: blur(6px);
+  }
+
+  /* danger italic accent (red→amber) */.italic-danger {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    background: linear-gradient(110deg, #F87171 10%, #FBBF24 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* cost breakdown card */.cost-card {
+    position: relative;
+    border-radius: 1.25rem;
+    background: linear-gradient(180deg, rgba(20, 37, 62, 0.5) 0%, rgba(10, 22, 40, 0.32) 100%);
+    border: 1px solid rgba(245, 239, 226, 0.08);
+    backdrop-filter: blur(24px) saturate(135%);
+    -webkit-backdrop-filter: blur(24px) saturate(135%);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.05) inset,
+      0 28px 56px -24px rgba(0, 0, 0, 0.55);
+    overflow: hidden;
+  }.cost-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.7), transparent);
+  }.cost-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 1.5rem 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  @media (min-width: 1024px) {.cost-card-header { padding: 1.75rem 2rem 1.5rem; }
+  }.cost-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1;
+    color: rgba(239, 68, 68, 0.7);
+    flex-shrink: 0;
+  }.cost-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #F87171;
+    flex-shrink: 0;
+  }
+
+  /* table grid */.cost-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  @media (min-width: 768px) {.cost-row {
+      grid-template-columns: 2.2fr 1.2fr 1fr;
+      gap: 1.5rem;
+      padding: 1rem 2rem;
+      align-items: center;
+    }
+  }.cost-row-head {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(245, 239, 226, 0.45);
+    border-top: none;
+    padding-top: 1rem;
+    padding-bottom: 0.6rem;
+    display: none;
+  }
+  @media (min-width: 768px) {.cost-row-head { display: grid; }
+  }.cost-row.label-mobile {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(245, 239, 226, 0.4);
+    font-weight: 600;
+    margin-right: 0.5rem;
+  }
+  @media (min-width: 768px) {.cost-row.label-mobile { display: none; }
+  }.cost-need {
+    color: rgba(245, 239, 226, 0.92);
+    font-size: 14.5px;
+    line-height: 1.4;
+  }.cost-need-sub {
+    display: block;
+    color: rgba(245, 239, 226, 0.5);
+    font-size: 12.5px;
+    margin-top: 2px;
+  }.cost-money {
+    color: var(--gold-soft);
+    font-weight: 600;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+  }.cost-time {
+    color: rgba(245, 239, 226, 0.7);
+    font-size: 13.5px;
+  }
+
+  /* TOTAL bar. red */.cost-row-total {
+    background: linear-gradient(180deg, rgba(239, 68, 68, 0.18) 0%, rgba(127, 29, 29, 0.22) 100%);
+    border-top: 1px solid rgba(239, 68, 68, 0.45);
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }.cost-row-total.cost-need,.cost-row-total.cost-money,.cost-row-total.cost-time {
+    color: #FCA5A5;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 13px;
+  }.cost-row-total.cost-money { font-size: 15px; }
+
+  /* GRAND TOTAL.final cost callout */.grand-total-card {
+    background: linear-gradient(180deg, #DC2626 0%, #B91C1C 100%);
+    border: 1px solid rgba(127, 29, 29, 0.7);
+    border-radius: 1.25rem;
+    padding: 2rem 1.5rem;
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.18) inset,
+      0 28px 64px -20px rgba(220, 38, 38, 0.5),
+      0 0 80px -10px rgba(220, 38, 38, 0.35);
+  }
+  @media (min-width: 1024px) {.grand-total-card { padding: 2.75rem 2rem; }
+  }.grand-total-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+    border-radius: 1.25rem 1.25rem 0 0;
+  }.grand-amount {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(2.6rem, 8.5vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }.grand-italic {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold-soft);
+  }
+
+  /* ===== WHO THIS IS FOR.section bg ===== */.who-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      radial-gradient(ellipse 70% 50% at 20% 20%, rgba(16, 185, 129, 0.16) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 60% at 80% 80%, rgba(30, 58, 138, 0.32) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(5, 13, 36, 0.92) 0%, rgba(10, 26, 58, 0.86) 50%, rgba(5, 13, 36, 0.92) 100%),
+      url('Assets/Circle.png');
+    background-size: cover, cover, cover, cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }.who-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  /* ===== WHO THIS IS FOR.qualifier cards ===== */.qualifier-card {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.4rem 1.4rem;
+    border-radius: 1rem;
+    background: linear-gradient(180deg, rgba(20, 37, 62, 0.42) 0%, rgba(10, 22, 40, 0.28) 100%);
+    border: 1px solid rgba(245, 239, 226, 0.08);
+    backdrop-filter: blur(24px) saturate(135%);
+    -webkit-backdrop-filter: blur(24px) saturate(135%);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.05) inset,
+      0 22px 44px -22px rgba(0, 0, 0, 0.45);
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), border-color 320ms, box-shadow 320ms;
+  }
+  @media (min-width: 1024px) {.qualifier-card { padding: 1.6rem 1.7rem; gap: 1.15rem; }
+  }.qualifier-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 168, 87, 0.35), transparent);
+    border-radius: 1rem 1rem 0 0;
+  }.qualifier-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(212, 168, 87, 0.32);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.08) inset,
+      0 28px 56px -20px rgba(0, 0, 0, 0.55),
+      0 0 36px -10px rgba(212, 168, 87, 0.18);
+  }.qualifier-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    background: rgba(212, 168, 87, 0.1);
+    border: 1px solid rgba(212, 168, 87, 0.42);
+    color: var(--gold-soft);
+    flex-shrink: 0;
+    box-shadow: 0 0 18px -8px rgba(212, 168, 87, 0.25);
+    transition: transform 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }.qualifier-card:hover.qualifier-icon {
+    transform: rotate(-10deg) scale(1.1);
+  }
+
+  /* ===== FOUNDER STORY SECTION ===== */.founder-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      radial-gradient(ellipse 60% 50% at 25% 30%, rgba(16, 185, 129, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 60% at 80% 80%, rgba(30, 58, 138, 0.30) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(5, 13, 36, 0.94) 0%, rgba(10, 26, 58, 0.88) 50%, rgba(5, 13, 36, 0.95) 100%),
+      url('Assets/Coach%20Lish%20Meeting.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }.founder-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+  }.founder-portrait {
+    position: relative;
+    isolation: isolate;
+  }.founder-portrait img {
+    display: block;
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 3;
+    filter:
+      drop-shadow(0 32px 60px rgba(0, 0, 0, 0.55))
+      drop-shadow(0 0 80px rgba(212, 168, 87, 0.18));
+  }
+
+  /* soft gold radial glow behind portrait.upper area for full-body */.founder-glow {
+    position: absolute;
+    top: -4%; left: 50%;
+    transform: translateX(-50%);
+    width: 145%;
+    height: 55%;
+    background: radial-gradient(ellipse at center, rgba(212, 168, 87, 0.28) 0%, rgba(95, 212, 196, 0.14) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    filter: blur(28px);
+  }
+
+  /* thin gold halo ring.behind head/shoulders */.founder-halo {
+    position: absolute;
+    top: -3%; left: 50%;
+    transform: translateX(-50%);
+    width: 92%;
+    aspect-ratio: 1 / 1;
+    border: 1.5px solid rgba(212, 168, 87, 0.42);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
+    box-shadow:
+      0 0 60px rgba(212, 168, 87, 0.18) inset,
+      0 0 90px rgba(212, 168, 87, 0.08);
+  }
+
+  /* ===== INSIDE COACH CIRCLE.uniform glassmorphism ===== */.feature-card {
+    position: relative;
+    padding: 1.6rem 1.5rem;
+    border-radius: 1.25rem;
+    background: linear-gradient(135deg, rgba(20, 37, 62, 0.45) 0%, rgba(10, 22, 40, 0.28) 100%);
+    border: 1px solid rgba(245, 239, 226, 0.12);
+    backdrop-filter: blur(28px) saturate(150%);
+    -webkit-backdrop-filter: blur(28px) saturate(150%);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.08) inset,
+      0 -1px 0 rgba(255, 255, 255, 0.02) inset,
+      0 24px 48px -20px rgba(0, 0, 0, 0.55);
+    transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1), border-color 360ms, box-shadow 360ms;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  @media (min-width: 1024px) {.feature-card { padding: 1.85rem 1.65rem; }
+  }.feature-card::before {
+    /* top-edge glass highlight */
+    content: '';
+    position: absolute;
+    top: 0; left: 6%; right: 6%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    border-radius: 1.25rem 1.25rem 0 0;
+    z-index: 1;
+  }.feature-card::after {
+    /* subtle tone-tinted inner glow */
+    content: '';
+    position: absolute;
+    top: -20%; left: -10%;
+    width: 70%; height: 60%;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(24px);
+    opacity: 0.55;
+  }.feature-card > * { position: relative; z-index: 2; }.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(245, 239, 226, 0.22);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.12) inset,
+      0 -1px 0 rgba(255, 255, 255, 0.04) inset,
+      0 32px 64px -20px rgba(0, 0, 0, 0.65);
+  }
+
+  /* TONE: gold */.feature-card[data-tone="emerald"]::after {
+    background: radial-gradient(circle, rgba(212, 168, 87, 0.45) 0%, transparent 70%);
+  }.feature-card[data-tone="emerald"].feature-icon {
+    background: linear-gradient(135deg, rgba(212, 168, 87, 0.22), rgba(212, 168, 87, 0.06));
+    border-color: rgba(212, 168, 87, 0.45);
+    color: var(--gold-soft);
+    box-shadow: 0 0 20px -6px rgba(212, 168, 87, 0.4);
+  }.feature-card[data-tone="emerald"].feature-num { color: rgba(212, 168, 87, 0.75); }
+
+  /* TONE: teal */.feature-card[data-tone="emerald"]::after {
+    background: radial-gradient(circle, rgba(95, 212, 196, 0.42) 0%, transparent 70%);
+  }.feature-card[data-tone="emerald"].feature-icon {
+    background: linear-gradient(135deg, rgba(95, 212, 196, 0.2), rgba(95, 212, 196, 0.05));
+    border-color: rgba(95, 212, 196, 0.45);
+    color: var(--teal-script);
+    box-shadow: 0 0 20px -6px rgba(95, 212, 196, 0.4);
+  }.feature-card[data-tone="emerald"].feature-num { color: rgba(95, 212, 196, 0.78); }
+
+  /* TONE: emerald */.feature-card[data-tone="emerald"]::after {
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.42) 0%, transparent 70%);
+  }.feature-card[data-tone="emerald"].feature-icon {
+    background: linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(52, 211, 153, 0.05));
+    border-color: rgba(52, 211, 153, 0.45);
+    color: var(--emerald-glow);
+    box-shadow: 0 0 20px -6px rgba(52, 211, 153, 0.4);
+  }.feature-card[data-tone="emerald"].feature-num { color: rgba(52, 211, 153, 0.78); }.feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    margin-bottom: 1.1rem;
+    border: 1px solid;
+  }.feature-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  .feature-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16.5px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.65rem;
+    color: var(--emerald-glow);
+  }
+  @media (min-width: 1024px) {.feature-title { font-size: 17.5px; }
+  }.feature-body {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(245, 239, 226, 0.74);
+  }
+  @media (min-width: 1024px) {.feature-body { font-size: 13.5px; }
+  }
+
+  /* ===== Plain dark gradient bg (no image, no atmospheric glows) ===== */.plain-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 70% 50% at 75% 60%, rgba(11, 110, 79, 0.16) 0%, transparent 70%),
+      linear-gradient(135deg, #050D24 0%, #0A1A3A 50%, #0B2B3A 100%);
+  }.plain-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.35;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  /* ===== Reusable atmospheric bg with image (sections) ===== */.atmos-img-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% 15%, rgba(16, 185, 129, 0.16) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 60% at 80% 85%, rgba(30, 58, 138, 0.36) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(5, 13, 36, 0.88) 0%, rgba(10, 26, 58, 0.82) 50%, rgba(5, 13, 36, 0.92) 100%),
+      var(--bg-img, none);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }.atmos-img-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  /* ===== HOW YOU EARN.diagonal staircase cards ===== */.earn-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  @media (min-width: 768px) {.earn-stack { gap: 1.25rem; }
+  }.earn-card {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.5rem 1.5rem;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, rgba(20, 37, 62, 0.6) 0%, rgba(10, 22, 40, 0.32) 100%);
+    border: 1px solid rgba(52, 211, 153, 0.22);
+    backdrop-filter: blur(26px) saturate(145%);
+    -webkit-backdrop-filter: blur(26px) saturate(145%);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.06) inset,
+      0 24px 48px -20px rgba(0, 0, 0, 0.55);
+    transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1), border-color 360ms, box-shadow 360ms;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  @media (min-width: 768px) {.earn-card { padding: 1.75rem 2rem; gap: 1.5rem; }
+  }
+  @media (min-width: 1024px) {.earn-card { padding: 1.85rem 2.25rem; gap: 1.75rem; }
+  }.earn-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 5%; right: 5%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.7), transparent);
+    z-index: 1;
+  }.earn-card::after {
+    content: '';
+    position: absolute;
+    top: -25%; left: -8%;
+    width: 55%; height: 70%;
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.42) 0%, transparent 70%);
+    filter: blur(32px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.7;
+  }.earn-card > * { position: relative; z-index: 2; }.earn-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(52, 211, 153, 0.55);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.1) inset,
+      0 32px 64px -22px rgba(0, 0, 0, 0.65),
+      0 0 36px -10px rgba(52, 211, 153, 0.28);
+  }
+
+  /* connecting line between staggered cards (decorative) */
+  @media (min-width: 768px) {.earn-stack.earn-card:not(:last-child)::before {
+      box-shadow: 0 0 14px rgba(52, 211, 153, 0.4);
+    }
+  }
+
+  /* per-card image backgrounds */.earn-card[data-bg="1"] {
+    background:
+      linear-gradient(135deg, rgba(10, 22, 40, 0.7) 0%, rgba(5, 13, 36, 0.8) 60%, rgba(5, 13, 36, 0.62) 100%),
+      url('Assets/4th.png') center/cover no-repeat;
+  }.earn-card[data-bg="2"] {
+    background:
+      linear-gradient(135deg, rgba(10, 22, 40, 0.7) 0%, rgba(5, 13, 36, 0.78) 55%, rgba(5, 13, 36, 0.62) 100%),
+      url('Assets/5th.png') center/cover no-repeat;
+  }.earn-card[data-bg="3"] {
+    background:
+      linear-gradient(135deg, rgba(10, 22, 40, 0.7) 0%, rgba(5, 13, 36, 0.8) 60%, rgba(5, 13, 36, 0.62) 100%),
+      url('Assets/4th.png') center/cover no-repeat;
+  }.earn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(52, 211, 153, 0.22) 0%, rgba(52, 211, 153, 0.05) 100%);
+    border: 1px solid rgba(52, 211, 153, 0.5);
+    color: var(--emerald-glow);
+    box-shadow: 0 0 26px -6px rgba(52, 211, 153, 0.45);
+    flex-shrink: 0;
+  }.earn-content { flex: 1; min-width: 0; }.earn-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 11.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(52, 211, 153, 0.78);
+    margin-bottom: 0.35rem;
+  }.earn-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ivory);
+    margin-bottom: 0.7rem;
+  }
+  @media (min-width: 1024px) {.earn-title { font-size: 19px; }
+  }.earn-amount-row {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+    padding: 0.4rem 0.85rem 0.4rem 0.85rem;
+    border-radius: 0.5rem;
+    background: rgba(52, 211, 153, 0.08);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+    margin-bottom: 0.85rem;
+  }.earn-amount-label {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(52, 211, 153, 0.72);
+    font-weight: 700;
+  }.earn-amount {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1;
+    letter-spacing: -0.012em;
+    color: var(--emerald-glow);
+    text-shadow: 0 0 24px rgba(52, 211, 153, 0.3);
+  }
+  @media (min-width: 1024px) {.earn-amount { font-size: 1.4rem; }
+  }.earn-amount-sub {
+    font-style: italic;
+    font-weight: 500;
+    font-size: 0.7em;
+    letter-spacing: 0;
+    color: rgba(245, 239, 226, 0.55);
+  }.earn-body {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: rgba(245, 239, 226, 0.74);
+  }
+  @media (min-width: 1024px) {.earn-body { font-size: 14px; }
+  }
+
+  /* ===== HOW IT WORKS.step cards ===== */.step-card {
+    position: relative;
+    padding: 2rem 1.75rem 2.25rem;
+    border-radius: 1.5rem;
+    background: linear-gradient(180deg, rgba(20, 37, 62, 0.6) 0%, rgba(10, 22, 40, 0.35) 100%);
+    border: 1px solid rgba(245, 239, 226, 0.1);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.07) inset,
+      0 26px 52px -22px rgba(0, 0, 0, 0.55);
+    text-align: center;
+    transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1), border-color 360ms;
+    overflow: hidden;
+    isolation: isolate;
+  }.step-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 8%; right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  }.step-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(212, 168, 87, 0.32);
+  }.step-icon {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.3));
+  }.step-label {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 11.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(212, 168, 87, 0.72);
+    margin-bottom: 0.5rem;
+  }.step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--ivory);
+    margin-bottom: 0.85rem;
+  }
+  @media (min-width: 1024px) {.step-title { font-size: 24px; }
+  }.step-body {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(245, 239, 226, 0.75);
+  }
+
+  /* connector line between step cards on desktop */
+  @media (min-width: 768px) {.step-grid {
+      position: relative;
+    }.step-grid::before {
+      content: '';
+      position: absolute;
+      top: 84px;
+      left: 18%;
+      right: 18%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 168, 87, 0.45) 20%, rgba(212, 168, 87, 0.45) 80%, transparent);
+      z-index: 0;
+      pointer-events: none;
+    }
+  }
+
+  /* ===== IS THIS FOR YOU.fit cards (all green/emerald) ===== */.fit-card {
+    position: relative;
+    padding: 1.6rem 1.25rem 1.75rem;
+    border-radius: 1.25rem;
+    background: linear-gradient(160deg, #10B981 0%, #34D399 55%, #5FD4C4 100%);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.28) inset,
+      0 22px 44px -22px rgba(16, 185, 129, 0.45);
+    text-align: center;
+    transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1), border-color 360ms, box-shadow 360ms;
+    overflow: hidden;
+    isolation: isolate;
+  }.fit-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 8%; right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  }.fit-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.32) inset,
+      0 28px 56px -22px rgba(16, 185, 129, 0.55),
+      0 0 36px -10px rgba(52, 211, 153, 0.35);
+  }.fit-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.22));
+  }.fit-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin-bottom: 0.55rem;
+  }
+  @media (min-width: 1024px) {.fit-title { font-size: 16px; }
+  }.fit-body {
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  /* HIGHLIGHTED fit card.slightly brighter + scaled up to keep emphasis */.fit-card.highlight {
+    background: linear-gradient(160deg, #059669 0%, #10B981 50%, #34D399 100%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.4) inset,
+      0 30px 60px -18px rgba(16, 185, 129, 0.65),
+      0 0 60px -10px rgba(52, 211, 153, 0.5);
+    transform: scale(1.05);
+  }.fit-card.highlight::before {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+  }.fit-card.highlight:hover {
+    transform: scale(1.05) translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.55);
+  }
+
+  /* fair-play rule strip */.fairplay {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem 1.75rem;
+    border-radius: 1rem;
+    background: linear-gradient(180deg, rgba(20, 37, 62, 0.55), rgba(10, 22, 40, 0.32));
+    border: 1px solid rgba(212, 168, 87, 0.34);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 16px 36px -16px rgba(0, 0, 0, 0.45);
+    position: relative;
+  }.fairplay::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 8%; right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 168, 87, 0.55), transparent);
+    border-radius: 1rem 1rem 0 0;
+  }.fairplay-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(212, 168, 87, 0.12);
+    border: 1px solid rgba(212, 168, 87, 0.5);
+    color: var(--gold-soft);
+    flex-shrink: 0;
+  }
+
+  /* ===== APPLY / FINAL CTA. BIG ===== */.join-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.3rem 2.6rem;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, var(--emerald-glow) 0%, var(--emerald) 100%);
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    font-size: 16px;
+    text-transform: uppercase;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.32) inset,
+      0 0 0 1px rgba(16, 185, 129, 0.45),
+      0 22px 48px -12px rgba(16, 185, 129, 0.6),
+      0 0 70px -14px rgba(52, 211, 153, 0.5);
+    transition: transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 320ms;
+    cursor: pointer;
+  }
+  @media (min-width: 1024px) {.join-banner {
+      padding: 1.65rem 3.6rem;
+      font-size: 19px;
+      gap: 1.15rem;
+    }
+  }.join-banner:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.4) inset,
+      0 0 0 1px rgba(16, 185, 129, 0.55),
+      0 30px 64px -14px rgba(16, 185, 129, 0.75),
+      0 0 90px -10px rgba(52, 211, 153, 0.65);
+  }.join-banner.arrow-anim {
+    display: inline-block;
+    font-size: 18px;
+    animation: arrowBounce 1.6s ease-in-out infinite;
+  }
+  @media (min-width: 1024px) {.join-banner.arrow-anim { font-size: 22px; }
+  }
+  @keyframes arrowBounce {
+    0%, 100% { transform: translateX(0); }
+    50%      { transform: translateX(6px); }
+  }
+  @media (prefers-reduced-motion: reduce) {.join-banner.arrow-anim { animation: none; }
+  }.form-card {
+    position: relative;
+    max-width: 560px;
+    margin: 0 auto;
+    border-radius: 1.5rem;
+    padding: 1.25rem;
+    background: linear-gradient(180deg, rgba(20, 37, 62, 0.65) 0%, rgba(10, 22, 40, 0.4) 100%);
+    border: 1px solid rgba(212, 168, 87, 0.4);
+    backdrop-filter: blur(28px) saturate(140%);
+    -webkit-backdrop-filter: blur(28px) saturate(140%);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.1) inset,
+      0 40px 80px -28px rgba(0, 0, 0, 0.65),
+      0 0 80px -22px rgba(212, 168, 87, 0.2);
+    overflow: hidden;
+    width: 100%;
+  }
+  @media (min-width: 1024px) {.form-card { padding: 1.5rem; max-width: none; margin: 0; }
+  }.form-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 6%; right: 6%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 168, 87, 0.7), transparent);
+  }.form-iframe-wrap {
+    background: transparent;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+  }.form-iframe-wrap iframe {
+    width: 100%;
+    min-height: 560px;
+    border: none;
+    display: block;
+    border-radius: 8px;
+    background: transparent;
+  }
+
+  /* trust row for the apply section. animated boxes */
+  .apply-trust {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    justify-items: stretch;
+  }
+  @media (max-width: 480px) {
+    .apply-trust { grid-template-columns: 1fr; }
+  }
+  .apply-trust li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    padding: 0.85rem 1.4rem;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, rgba(20, 37, 62, 0.55) 0%, rgba(10, 22, 40, 0.32) 100%);
+    border: 1px solid rgba(52, 211, 153, 0.32);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: rgba(245, 239, 226, 0.92);
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.4);
+    transition: transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1), border-color 320ms, box-shadow 320ms;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 1024px) {.apply-trust li { font-size: 14px; padding: 0.95rem 1.6rem; }
+  }.apply-trust li::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 12%; right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.45), transparent);
+  }.apply-trust li:hover {
+    transform: translateY(-3px);
+    border-color: rgba(52, 211, 153, 0.65);
+    box-shadow:
+      0 12px 30px -10px rgba(0, 0, 0, 0.5),
+      0 0 32px -8px rgba(52, 211, 153, 0.4);
+  }.apply-trust li.checkmark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--emerald-glow) 0%, var(--emerald) 100%);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    box-shadow: 0 0 12px rgba(52, 211, 153, 0.5);
+    flex-shrink: 0;
+    animation: trustPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes trustPulse {
+    0%, 100% {
+      box-shadow: 0 0 12px rgba(52, 211, 153, 0.5);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 0 22px rgba(52, 211, 153, 0.85);
+      transform: scale(1.08);
+    }
+  }.apply-trust li:nth-child(2).checkmark { animation-delay: 0.3s; }.apply-trust li:nth-child(3).checkmark { animation-delay: 0.6s; }.apply-trust li:nth-child(4).checkmark { animation-delay: 0.9s; }
+
+  @media (prefers-reduced-motion: reduce) {.apply-trust li.checkmark { animation: none; }
+  }
+
+  /* Footer */.site-footer {
+    background: #050D24;
+    padding: 4rem 1.5rem 3rem;
+    text-align: center;
+    border-top: 1px solid rgba(212, 168, 87, 0.15);
+    position: relative;
+  }
+  @media (min-width: 1024px) {.site-footer { padding: 5rem 3rem 3.5rem; }
+  }.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 20%; right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 168, 87, 0.5), transparent);
+  }.footer-logo {
+    height: 56px;
+    width: auto;
+    margin: 0 auto 1.75rem;
+    display: block;
+    filter: drop-shadow(0 6px 20px rgba(212, 168, 87, 0.18));
+  }
+  @media (min-width: 1024px) {.footer-logo { height: 64px; }
+  }.footer-quote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.1rem;
+    line-height: 1.55;
+    color: rgba(245, 239, 226, 0.86);
+    max-width: 580px;
+    margin: 0 auto 1.5rem;
+  }
+  @media (min-width: 1024px) {.footer-quote { font-size: 1.3rem; }
+  }.footer-brand {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(212, 168, 87, 0.72);
+  }
+
+  /* signature under portrait */.founder-signature {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+  @media (min-width: 1024px) {.founder-signature { text-align: left; padding-left: 0.25rem; }
+  }.founder-pull {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    background: linear-gradient(110deg, var(--teal-script) 10%, var(--gold-soft) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.2;
+  }.founder-body p {
+    margin-bottom: 1.1rem;
+    line-height: 1.7;
+    color: rgba(245, 239, 226, 0.82);
+  }.founder-body p:last-child { margin-bottom: 0; }.founder-body em {
+    font-style: italic;
+    color: var(--gold-soft);
+  }.founder-sign {
+    border-top: 1px solid rgba(212, 168, 87, 0.22);
+    padding-top: 1.25rem;
+    margin-top: 1.75rem;
+  }
+
+  /* ===== SCROLL-TRIGGERED ANIMATIONS ===== */
+  html.js [data-anim] {
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  /* SECTION 2.stagger fade-up + scale (positive lift) */
+  html.js [data-anim="stagger-up"] {
+    transform: translateY(40px) scale(0.96);
+    transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  html.js [data-anim="stagger-up"].in-view {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  html.js [data-anim="stagger-up"]:nth-of-type(1).in-view { transition-delay: 0ms; }
+  html.js [data-anim="stagger-up"]:nth-of-type(2).in-view { transition-delay: 90ms; }
+  html.js [data-anim="stagger-up"]:nth-of-type(3).in-view { transition-delay: 180ms; }
+  html.js [data-anim="stagger-up"]:nth-of-type(4).in-view { transition-delay: 270ms; }
+  html.js [data-anim="stagger-up"]:nth-of-type(5).in-view { transition-delay: 360ms; }
+  html.js [data-anim="stagger-up"]:nth-of-type(6).in-view { transition-delay: 450ms; }
+  html.js [data-anim="stagger-up"]:nth-of-type(7).in-view { transition-delay: 540ms; }
+  html.js [data-anim="stagger-up"]:nth-of-type(8).in-view { transition-delay: 630ms; }
+
+  /* SECTION 3.alternating slide-in (cards) */
+  html.js [data-anim="slide-left"] {
+    transform: translateX(-60px);
+    transition: opacity 900ms cubic-bezier(0.16, 1, 0.3, 1), transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  html.js [data-anim="slide-right"] {
+    transform: translateX(60px);
+    transition: opacity 900ms cubic-bezier(0.16, 1, 0.3, 1), transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  html.js [data-anim="slide-left"].in-view,
+  html.js [data-anim="slide-right"].in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* SECTION 3.receipt-printing rows inside cost-card */
+  html.js.cost-card[data-anim] >.cost-row {
+    opacity: 0;
+    transition: opacity 500ms ease-out;
+  }
+  html.js.cost-card[data-anim]. in-view >.cost-row {
+    opacity: 1;
+  }
+  html.js.cost-card.in-view >.cost-row:nth-child(2) { transition-delay: 380ms; }
+  html.js.cost-card.in-view >.cost-row:nth-child(3) { transition-delay: 460ms; }
+  html.js.cost-card.in-view >.cost-row:nth-child(4) { transition-delay: 540ms; }
+  html.js.cost-card.in-view >.cost-row:nth-child(5) { transition-delay: 620ms; }
+  html.js.cost-card.in-view >.cost-row:nth-child(6) { transition-delay: 700ms; }
+  html.js.cost-card.in-view >.cost-row:nth-child(7) { transition-delay: 780ms; }
+  html.js.cost-card.in-view >.cost-row:nth-child(8) { transition-delay: 860ms; }
+  html.js.cost-card.in-view >.cost-row:nth-child(9) { transition-delay: 940ms; }
+
+  /* SECTION 3.grand total slam */
+  html.js [data-anim="slam"] {
+    transform: scale(0.82);
+    transition: opacity 700ms cubic-bezier(0.34, 1.56, 0.64, 1), transform 700ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  html.js [data-anim="slam"].in-view {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* SECTION 4.diagonal reveal with rotation */
+  html.js [data-anim="diagonal"] {
+    transform: translateY(34px) rotate(-2.5deg);
+    transition: opacity 750ms cubic-bezier(0.16, 1, 0.3, 1), transform 750ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  html.js [data-anim="diagonal"].in-view {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+  }
+  /* diagonal pattern: 1 -> 4 -> 2 -> 3 (cross-corner) */
+  html.js.qualifier-card[data-anim="diagonal"]:nth-child(1).in-view { transition-delay: 0ms; }
+  html.js.qualifier-card[data-anim="diagonal"]:nth-child(4).in-view { transition-delay: 180ms; }
+  html.js.qualifier-card[data-anim="diagonal"]:nth-child(2).in-view { transition-delay: 360ms; }
+  html.js.qualifier-card[data-anim="diagonal"]:nth-child(3).in-view { transition-delay: 540ms; }
+
+  /* Disable all motion when user prefers reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    html.js [data-anim],
+    html.js.cost-card[data-anim] >.cost-row {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }.qualifier-card:hover.qualifier-icon {
+      transform: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="absolute top-0 left-0 right-0 z-30 px-6 lg:px-12 py-5 lg:py-6">
+  <div class="max-w-7xl mx-auto flex items-center">
+    <a href="#" class="nav-link inline-flex items-center" aria-label="Coach Circle home">
+      <img src="Assets/Logo.png" alt="Coach Circle" class="h-14 lg:h-20 w-auto" />
+    </a>
+  </div>
+</header>
+
+<section class="hero relative min-h-screen overflow-hidden pt-28 pb-16 lg:pt-32 lg:pb-20 px-6 lg:px-12">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <div class="relative max-w-4xl mx-auto w-full text-center flex flex-col items-center lg:min-h-[calc(100vh-9rem)] justify-center">
+
+    <div class="fade-1 eyebrow inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6">
+      <span aria-hidden="true" style="color: var(--gold-soft)">✨</span>
+      <span class="text-[10px] sm:text-[11px] lg:text-xs font-semibold tracking-[0.2em] uppercase" style="color: var(--gold-soft)">
+        Coach Circle · Now Accepting Founding Coaches
+      </span>
+    </div>
+
+    <h1 class="headline fade-2 text-[2rem] sm:text-[2.6rem] lg:text-[3.4rem] xl:text-[3.9rem] mb-5 lg:mb-6 max-w-3xl mx-auto">
+      How To Build A
+      <span class="italic-accent">Scalable Coaching Business</span>
+      Without Running Ads, Building Funnels, Or Hiring A Team
+    </h1>
+
+    <p class="fade-3 text-[15px] sm:text-base lg:text-lg max-w-xl mx-auto mb-7 leading-relaxed" style="color: rgba(245, 239, 226, 0.78)">
+      Join the first Filipino ecosystem built for coaches where expertise is your only investment, and collaboration is your competitive edge.
+    </p>
+
+    <div class="fade-4 mb-4 flex justify-center w-full max-w-md">
+      <a href="#apply" class="cta-pill flex items-center justify-center gap-2.5 w-full px-6 py-4 lg:py-5 rounded-full font-bold text-base lg:text-lg text-white">
+        Join Free Now
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- TRUST BOX (under CTA) -->
+    <div class="fade-4 trust-box rounded-full px-2 py-2.5 w-full max-w-md flex items-center justify-around gap-1 mb-7">
+      <span class="inline-flex items-center gap-1.5 text-[12px] lg:text-[13px] font-medium px-2" style="color: rgba(245,239,226,0.88)">
+        <span class="checkmark" aria-hidden="true">✓</span> 100% free to join
+      </span>
+      <span class="trust-divider" aria-hidden="true"></span>
+      <span class="inline-flex items-center gap-1.5 text-[12px] lg:text-[13px] font-medium px-2" style="color: rgba(245,239,226,0.88)">
+        <span class="checkmark" aria-hidden="true">✓</span> No tech needed
+      </span>
+      <span class="trust-divider" aria-hidden="true"></span>
+      <span class="inline-flex items-center gap-1.5 text-[12px] lg:text-[13px] font-medium px-2" style="color: rgba(245,239,226,0.88)">
+        <span class="checkmark" aria-hidden="true">✓</span> 48-hour review
+      </span>
+    </div>
+
+    <!-- BIG FOUNDING COACH BONUS CARD -->
+    <div class="bonus-card fade-5 w-full max-w-3xl text-left p-6 lg:p-8 xl:p-9">
+      <div class="flex items-start gap-4 lg:gap-5">
+        <span class="bonus-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <path d="M13 2 L4 14 L11 14 L11 22 L20 10 L13 10 Z"/>
+          </svg>
+        </span>
+        <div class="flex-1 min-w-0">
+          <div class="text-[10px] lg:text-[11px] font-bold tracking-[0.22em] uppercase mb-2" style="color: var(--gold)">
+            Para Sa Unang 20 Coaches Lang
+          </div>
+          <h3 class="font-display font-semibold text-xl sm:text-2xl lg:text-[1.85rem] xl:text-[2rem] leading-[1.1] mb-1.5" style="color: var(--ivory)">
+            Unlock <span class="italic-accent">20</span> Premium Coach Profile Placements
+          </h3>
+          <p class="text-[13.5px] lg:text-sm" style="color: rgba(245, 239, 226, 0.7)">
+            Be seen. Get listed. Grow your coaching business.
+          </p>
+        </div>
+      </div>
+
+      <p class="text-[14px] lg:text-[15px] leading-relaxed mt-6 lg:mt-7" style="color: rgba(245, 239, 226, 0.85)">
+        Get your profile featured in the <span style="color: var(--gold-soft); font-weight: 600">top 6 listings</span> on Coach Circle for <span style="color: var(--gold-soft); font-weight: 600">6 full months</span>. <span style="color: var(--gold-soft); font-weight: 600">One-time offer lang &rsquo;to.</span> <em style="color: rgba(245, 239, 226, 0.7)">Hindi na mauulit.</em>
+      </p>
+
+      <div class="grid sm:grid-cols-3 gap-5 lg:gap-6 mt-7 lg:mt-8 pt-6 lg:pt-7 border-t" style="border-color: rgba(212, 168, 87, 0.18)">
+        <div class="bonus-mini">
+          <span class="bonus-mini-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18 L7 8 L12 12 L17 6 L19 18 Z"/><line x1="5" y1="21" x2="19" y2="21"/></svg>
+          </span>
+          <div>
+            <p class="text-[13px] lg:text-sm font-bold mb-0.5" style="color: var(--ivory)">Top 6 Placement</p>
+            <p class="text-[11.5px] lg:text-xs leading-relaxed" style="color: rgba(245, 239, 226, 0.6)">Stand out where it matters</p>
+          </div>
+        </div>
+        <div class="bonus-mini">
+          <span class="bonus-mini-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg>
+          </span>
+          <div>
+            <p class="text-[13px] lg:text-sm font-bold mb-0.5" style="color: var(--ivory)">6 Months Visibility</p>
+            <p class="text-[11.5px] lg:text-xs leading-relaxed" style="color: rgba(245, 239, 226, 0.6)">Long-term reach &amp; impact</p>
+          </div>
+        </div>
+        <div class="bonus-mini">
+          <span class="bonus-mini-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12,2 14.5,9 21.5,9.5 16,14 18,21 12,17 6,21 8,14 2.5,9.5 9.5,9"/></svg>
+          </span>
+          <div>
+            <p class="text-[13px] lg:text-sm font-bold mb-0.5" style="color: var(--ivory)">Premium Exposure</p>
+            <p class="text-[11.5px] lg:text-xs leading-relaxed" style="color: rgba(245, 239, 226, 0.6)">More visibility. More opportunities.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============= REASONS / PAIN-SOLUTION ============= -->
+<section class="reasons px-6 lg:px-12 py-20 lg:py-32">
+  <div class="plain-bg" aria-hidden="true"></div>
+
+  <div class="relative max-w-7xl mx-auto">
+
+    <div class="flex justify-center mb-6 lg:mb-8">
+      <div class="eyebrow inline-flex items-center gap-2 px-4 py-2 rounded-full">
+        <span aria-hidden="true" style="color: var(--gold-soft)">✨</span>
+        <span class="text-[10px] sm:text-[11px] lg:text-xs font-semibold tracking-[0.2em] uppercase" style="color: var(--gold-soft)">
+          The Coach Circle Difference
+        </span>
+      </div>
+    </div>
+
+    <h2 class="headline text-center text-[1.85rem] sm:text-[2.4rem] lg:text-[3rem] xl:text-[3.4rem] mb-5 lg:mb-6 max-w-4xl mx-auto">
+      Three Reasons Most Filipino Coaches Stay Stuck.
+      <span class="italic-accent">And How Coach Circle Fixes Each One</span>
+    </h2>
+
+    <p class="text-center max-w-2xl mx-auto text-[15px] lg:text-lg leading-relaxed mb-14 lg:mb-20" style="color: rgba(245,239,226,0.72)">
+      You don&rsquo;t have to build it alone. The infrastructure is already built, and the room is waiting.
+    </p>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
+
+      <!-- Card 1: Lonely Grind -->
+      <article class="glass-card" data-anim="stagger-up">
+        <span class="card-number" aria-hidden="true">01</span>
+        <div class="glass-card-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="8" r="3.2"/>
+            <circle cx="17" cy="9" r="2.4"/>
+            <path d="M3 19c0-3.2 2.7-5.2 6-5.2s6 2 6 5.2"/>
+            <path d="M14.5 18c0-2.4 1.5-3.8 2.9-3.8s2.9 1.4 2.9 3.8"/>
+          </svg>
+        </div>
+        <div class="text-[10px] lg:text-[11px] font-bold tracking-[0.2em] uppercase mb-2 label-gold">
+          Pain #1
+        </div>
+        <h3 class="font-display font-semibold text-xl lg:text-2xl mb-4 leading-tight" style="color: var(--ivory)">
+          The Lonely Grind
+        </h3>
+        <p class="italic text-[14px] lg:text-[15px] leading-relaxed mb-5" style="color: rgba(245,239,226,0.65)">
+          &ldquo;I&rsquo;m tired of building alone. Everyone else is out here grinding solo too. Where&rsquo;s my circle?&rdquo;
+        </p>
+        <div class="text-[10px] lg:text-[11px] font-bold tracking-[0.2em] uppercase mb-2 label-emerald">
+          What You Get
+        </div>
+        <p class="text-[14px] lg:text-[15px] leading-relaxed" style="color: rgba(245,239,226,0.86)">
+          A circle of coaches who get it. Bi-monthly Zoom masterminds featuring one coach per session. Replay access. Real peer support. Exclusive deals from vetted service providers. You&rsquo;re not alone anymore.
+        </p>
+      </article>
+
+      <!-- Card 2: Tech Overwhelm -->
+      <article class="glass-card" data-anim="stagger-up">
+        <span class="card-number" aria-hidden="true">02</span>
+        <div class="glass-card-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="4.4" rx="1.2"/>
+            <rect x="3" y="9.8" width="18" height="4.4" rx="1.2"/>
+            <rect x="3" y="15.6" width="18" height="4.4" rx="1.2"/>
+            <circle cx="6.5" cy="6.2" r="0.7" fill="currentColor"/>
+            <circle cx="6.5" cy="12" r="0.7" fill="currentColor"/>
+            <circle cx="6.5" cy="17.8" r="0.7" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="text-[10px] lg:text-[11px] font-bold tracking-[0.2em] uppercase mb-2 label-gold">
+          Pain #2
+        </div>
+        <h3 class="font-display font-semibold text-xl lg:text-2xl mb-4 leading-tight" style="color: var(--ivory)">
+          The Tech Overwhelm
+        </h3>
+        <p class="italic text-[14px] lg:text-[15px] leading-relaxed mb-5" style="color: rgba(245,239,226,0.65)">
+          &ldquo;I know my craft. But funnels, landing pages, payment systems, tech? I&rsquo;m drowning in it.&rdquo;
+        </p>
+        <div class="text-[10px] lg:text-[11px] font-bold tracking-[0.2em] uppercase mb-2 label-emerald">
+          What You Get
+        </div>
+        <p class="text-[14px] lg:text-[15px] leading-relaxed" style="color: rgba(245,239,226,0.86)">
+          Full infrastructure, done for you. Your hosted landing page. Your coach profile on the platform. Payment processing handled. No WordPress headaches. No plugins. No tech debt. Just teach.
+        </p>
+      </article>
+
+      <!-- Card 3: Income Ceiling -->
+      <article class="glass-card" data-anim="stagger-up">
+        <span class="card-number" aria-hidden="true">03</span>
+        <div class="glass-card-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12a9 9 0 0 1-9 9 9 9 0 0 1-7.5-4"/>
+            <polyline points="4 21 4.5 16 9 16.5"/>
+            <path d="M3 12a9 9 0 0 1 9-9 9 9 0 0 1 7.5 4"/>
+            <polyline points="20 3 19.5 8 15 7.5"/>
+          </svg>
+        </div>
+        <div class="text-[10px] lg:text-[11px] font-bold tracking-[0.2em] uppercase mb-2 label-gold">
+          Pain #3
+        </div>
+        <h3 class="font-display font-semibold text-xl lg:text-2xl mb-4 leading-tight" style="color: var(--ivory)">
+          The Income Ceiling
+        </h3>
+        <p class="italic text-[14px] lg:text-[15px] leading-relaxed mb-5" style="color: rgba(245,239,226,0.65)">
+          &ldquo;My content only earns when I&rsquo;m selling. I need income that works while I sleep.&rdquo;
+        </p>
+        <div class="text-[10px] lg:text-[11px] font-bold tracking-[0.2em] uppercase mb-2 label-emerald">
+          What You Get
+        </div>
+        <p class="text-[14px] lg:text-[15px] leading-relaxed" style="color: rgba(245,239,226,0.86)">
+          Recurring income on autopilot. &#8369;2,000 per student subscription you refer. 80/20 split on your course sales (you keep the 80%). Earn while you sleep, while you teach, while you rest.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============= REAL COST SECTION (negative samples) ============= -->
+<section class="cost-section px-6 lg:px-12 py-20 lg:py-32">
+  <div class="atmos-img-bg" style="--bg-img: url('Assets/2nd.png')" aria-hidden="true"></div>
+
+  <div class="relative max-w-5xl mx-auto">
+
+    <div class="flex justify-center mb-6 lg:mb-8">
+      <div class="eyebrow-danger inline-flex items-center gap-2 px-4 py-2 rounded-full">
+        <span aria-hidden="true" style="color: #F87171">⚠</span>
+        <span class="text-[10px] sm:text-[11px] lg:text-xs font-semibold tracking-[0.2em] uppercase" style="color: #FCA5A5">
+          The Cost of Going Solo
+        </span>
+      </div>
+    </div>
+
+    <h2 class="headline text-center text-[1.85rem] sm:text-[2.4rem] lg:text-[3rem] xl:text-[3.4rem] mb-5 lg:mb-6 max-w-4xl mx-auto">
+      The Real Cost of
+      <span class="italic-danger">Building It Alone</span>
+    </h2>
+
+    <p class="text-center max-w-2xl mx-auto text-[15px] lg:text-lg leading-relaxed mb-12 lg:mb-16" style="color: rgba(245,239,226,0.72)">
+      Most coaches don&rsquo;t realize the real cost of &ldquo;building it myself&rdquo;.until they&rsquo;ve been at it for 2 years with nothing to show. Here&rsquo;s what you&rsquo;ll actually pay if you try to go solo.
+    </p>
+
+    <div class="flex flex-col gap-6 lg:gap-8">
+
+      <!-- COST CARD 01: Landing Page -->
+      <article class="cost-card" data-anim="slide-left">
+        <header class="cost-card-header">
+          <span class="cost-num" aria-hidden="true">01</span>
+          <span class="cost-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="16" rx="2"/>
+              <line x1="3" y1="9" x2="21" y2="9"/>
+              <line x1="9" y1="13" x2="15" y2="13"/>
+              <line x1="9" y1="16" x2="13" y2="16"/>
+            </svg>
+          </span>
+          <h3 class="font-display font-semibold text-lg lg:text-2xl leading-tight" style="color: var(--ivory)">
+            What A Landing Page Really Costs
+          </h3>
+        </header>
+
+        <div class="cost-row cost-row-head">
+          <div>What You Need</div>
+          <div>Financial Cost</div>
+          <div>Time Cost</div>
+        </div>
+
+        <div class="cost-row">
+          <div class="cost-need">
+            Landing Page Builder
+            <span class="cost-need-sub">ClickFunnels, Kartra, etc.</span>
+          </div>
+          <div class="cost-money">&#8369;65,000 to &#8369;200,000/yr</div>
+          <div class="cost-time">1 to 2 weeks</div>
+        </div>
+
+        <div class="cost-row">
+          <div class="cost-need">
+            Web Designer
+            <span class="cost-need-sub">Layout, mobile, branding</span>
+          </div>
+          <div class="cost-money">&#8369;100,000 to &#8369;400,000</div>
+          <div class="cost-time">2 to 4 weeks</div>
+        </div>
+
+        <div class="cost-row">
+          <div class="cost-need">
+            Copywriter
+            <span class="cost-need-sub">Headline, body, CTA</span>
+          </div>
+          <div class="cost-money">&#8369;30,000 to &#8369;150,000</div>
+          <div class="cost-time">3 to 7 days</div>
+        </div>
+
+        <div class="cost-row">
+          <div class="cost-need">
+            Page Graphics
+            <span class="cost-need-sub">Graphic designer</span>
+          </div>
+          <div class="cost-money">&#8369;15,000 to &#8369;60,000</div>
+          <div class="cost-time">5 to 7 days</div>
+        </div>
+
+        <div class="cost-row cost-row-total">
+          <div class="cost-need">Total</div>
+          <div class="cost-money">&#8369;210,000 to &#8369;810,000</div>
+          <div class="cost-time">30 to 56 Days</div>
+        </div>
+      </article>
+
+      <!-- COST CARD 02: Digital Marketing -->
+      <article class="cost-card" data-anim="slide-right">
+        <header class="cost-card-header">
+          <span class="cost-num" aria-hidden="true">02</span>
+          <span class="cost-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 17 9 11 13 15 21 7"/>
+              <polyline points="14 7 21 7 21 14"/>
+            </svg>
+          </span>
+          <h3 class="font-display font-semibold text-lg lg:text-2xl leading-tight" style="color: var(--ivory)">
+            What Digital Marketing Really Costs
+          </h3>
+        </header>
+
+        <div class="cost-row cost-row-head">
+          <div>What You Need</div>
+          <div>Financial Cost</div>
+          <div>Time Cost</div>
+        </div>
+
+        <div class="cost-row">
+          <div class="cost-need">
+            Facebook Ad Budget
+            <span class="cost-need-sub">Monthly minimum spend</span>
+          </div>
+          <div class="cost-money">&#8369;57,000 to &#8369;170,000/mo</div>
+          <div class="cost-time">Ongoing</div>
+        </div>
+
+        <div class="cost-row">
+          <div class="cost-need">
+            Ad Buyer / Media Manager
+            <span class="cost-need-sub">Campaign management</span>
+          </div>
+          <div class="cost-money">&#8369;85,000 to &#8369;285,000/mo</div>
+          <div class="cost-time">Monthly retainer</div>
+        </div>
+
+        <div class="cost-row">
+          <div class="cost-need">
+            Lead Generation Tools
+            <span class="cost-need-sub">CRM, opt-ins, pipeline</span>
+          </div>
+          <div class="cost-money">&#8369;5,500 to &#8369;28,000/mo</div>
+          <div class="cost-time">Monthly SaaS fees</div>
+        </div>
+
+        <div class="cost-row">
+          <div class="cost-need">
+            Email Automation Software
+            <span class="cost-need-sub">Sequences, broadcasts</span>
+          </div>
+          <div class="cost-money">&#8369;3,000 to &#8369;17,000/mo</div>
+          <div class="cost-time">Monthly SaaS fees</div>
+        </div>
+
+        <div class="cost-row">
+          <div class="cost-need">
+            Content Creator / Video Editor
+            <span class="cost-need-sub">Reels, posts, edits</span>
+          </div>
+          <div class="cost-money">&#8369;57,000 to &#8369;200,000/mo</div>
+          <div class="cost-time">Monthly retainer</div>
+        </div>
+
+        <div class="cost-row">
+          <div class="cost-need">
+            Copywriter for Ads &amp; Emails
+            <span class="cost-need-sub">Hooks, sequences, angles</span>
+          </div>
+          <div class="cost-money">&#8369;30,000 to &#8369;140,000/mo</div>
+          <div class="cost-time">Monthly retainer</div>
+        </div>
+
+        <div class="cost-row cost-row-total">
+          <div class="cost-need">Total</div>
+          <div class="cost-money">&#8369;237,500 to &#8369;840,000 / month</div>
+          <div class="cost-time">Ongoing</div>
+        </div>
+      </article>
+
+      <!-- COST CARD 03: Hidden Costs -->
+      <article class="cost-card" data-anim="slide-left">
+        <header class="cost-card-header">
+          <span class="cost-num" aria-hidden="true">03</span>
+          <span class="cost-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <line x1="12" y1="8" x2="12" y2="13"/>
+              <line x1="12" y1="16" x2="12" y2="16.5"/>
+            </svg>
+          </span>
+          <h3 class="font-display font-semibold text-lg lg:text-2xl leading-tight" style="color: var(--ivory)">
+            The Hidden Costs Nobody Talks About
+          </h3>
+        </header>
+
+        <div class="cost-row cost-row-head">
+          <div>What You Pay For</div>
+          <div>Financial Cost</div>
+          <div>Time Cost</div>
+        </div>
+
+        <div class="cost-row">
+          <div class="cost-need">
+            Trial &amp; Error
+            <span class="cost-need-sub">Testing, failing, rebuilding</span>
+          </div>
+          <div class="cost-money">&#8369;200,000+</div>
+          <div class="cost-time">2+ years</div>
+        </div>
+
+        <div class="cost-row">
+          <div class="cost-need">
+            Opportunity Cost
+            <span class="cost-need-sub">Clients going to faster competitors</span>
+          </div>
+          <div class="cost-money">&#8369;300,000+</div>
+          <div class="cost-time">Ongoing</div>
+        </div>
+
+        <div class="cost-row cost-row-total">
+          <div class="cost-need">Total</div>
+          <div class="cost-money">&#8369;500,000+</div>
+          <div class="cost-time">Lost Forever</div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- GRAND TOTAL CALLOUT -->
+    <div class="mt-12 lg:mt-16 text-center">
+      <p class="grand-italic text-base lg:text-lg mb-6 lg:mb-7">
+        If you build this all yourself, here&rsquo;s the real number:
+      </p>
+
+      <div class="grand-total-card" data-anim="slam">
+        <div class="text-[10px] sm:text-[11px] lg:text-xs font-bold tracking-[0.22em] uppercase mb-3 lg:mb-4" style="color: rgba(255,255,255,0.85)">
+          Grand Total. First Year Alone.
+        </div>
+        <div class="grand-amount">&#8369;5,000,000+</div>
+      </div>
+
+      <p class="grand-italic text-[15px] lg:text-base mt-6 lg:mt-7">
+        &hellip;and you still might not have a coaching business that works.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============= WHO THIS IS FOR ============= -->
+<section class="cost-section px-6 lg:px-12 py-20 lg:py-32">
+  <div class="who-bg" aria-hidden="true"></div>
+
+  <div class="relative max-w-5xl mx-auto">
+
+    <div class="flex justify-center mb-6 lg:mb-8">
+      <div class="eyebrow inline-flex items-center gap-2 px-4 py-2 rounded-full">
+        <span aria-hidden="true" style="color: var(--gold-soft)">✦</span>
+        <span class="text-[10px] sm:text-[11px] lg:text-xs font-semibold tracking-[0.2em] uppercase" style="color: var(--gold-soft)">
+          Who This Is For
+        </span>
+      </div>
+    </div>
+
+    <h2 class="headline text-center text-[1.85rem] sm:text-[2.4rem] lg:text-[3rem] xl:text-[3.4rem] mb-12 lg:mb-16 max-w-3xl mx-auto">
+      Coach. Consultant. <span class="italic-accent">You.</span>
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-5 lg:gap-6">
+
+      <!-- Qualifier 1 -->
+      <article class="qualifier-card" data-anim="diagonal">
+        <span class="qualifier-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8.5" r="3.5"/>
+            <path d="M5 20.5c0-3.6 3.1-6 7-6s7 2.4 7 6"/>
+          </svg>
+        </span>
+        <p class="text-[14.5px] lg:text-[15.5px] leading-relaxed pt-1" style="color: rgba(245,239,226,0.88)">
+          You&rsquo;re a <strong style="color: var(--ivory); font-weight: 600">coach or consultant</strong> who wants consistent, high-paying clients.
+        </p>
+      </article>
+
+      <!-- Qualifier 2 -->
+      <article class="qualifier-card" data-anim="diagonal">
+        <span class="qualifier-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <line x1="6.6" y1="6.6" x2="17.4" y2="17.4"/>
+          </svg>
+        </span>
+        <p class="text-[14.5px] lg:text-[15.5px] leading-relaxed pt-1" style="color: rgba(245,239,226,0.88)">
+          You&rsquo;re <strong style="color: var(--ivory); font-weight: 600">tired of relying on ads, funnels,</strong> or complicated strategies.
+        </p>
+      </article>
+
+      <!-- Qualifier 3 -->
+      <article class="qualifier-card" data-anim="diagonal">
+        <span class="qualifier-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.5l2.6 6.4 6.9.5-5.3 4.5 1.7 6.7L12 17l-5.9 3.6 1.7-6.7L2.5 9.4l6.9-.5z"/>
+          </svg>
+        </span>
+        <p class="text-[14.5px] lg:text-[15.5px] leading-relaxed pt-1" style="color: rgba(245,239,226,0.88)">
+          You want a <strong style="color: var(--ivory); font-weight: 600">proven system that works</strong> so you can focus on your expertise.
+        </p>
+      </article>
+
+      <!-- Qualifier 4 -->
+      <article class="qualifier-card" data-anim="diagonal">
+        <span class="qualifier-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 17 9 11 13 15 21 7"/>
+            <polyline points="14 7 21 7 21 14"/>
+          </svg>
+        </span>
+        <p class="text-[14.5px] lg:text-[15.5px] leading-relaxed pt-1" style="color: rgba(245,239,226,0.88)">
+          You&rsquo;re ready to <strong style="color: var(--ivory); font-weight: 600">scale your income and impact</strong>.without the burnout.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============= EVERYTHING WE BUILD FOR YOU ============= -->
+<section class="cost-section px-6 lg:px-12 py-20 lg:py-32">
+  <div class="plain-bg" aria-hidden="true"></div>
+
+  <div class="relative max-w-7xl mx-auto">
+
+    <div class="flex justify-center mb-6 lg:mb-8">
+      <div class="eyebrow inline-flex items-center gap-2 px-4 py-2 rounded-full">
+        <span aria-hidden="true" style="color: var(--gold-soft)">✦</span>
+        <span class="text-[10px] sm:text-[11px] lg:text-xs font-semibold tracking-[0.2em] uppercase" style="color: var(--gold-soft)">
+          Everything You Need. All In One Place
+        </span>
+      </div>
+    </div>
+
+    <h2 class="headline text-center text-[1.85rem] sm:text-[2.4rem] lg:text-[3rem] xl:text-[3.4rem] mb-12 lg:mb-16 max-w-4xl mx-auto">
+      Everything we build for you.
+      <span class="italic-accent">the clients you get.</span>
+    </h2>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
+
+      <!-- 01 Premium Positioning -->
+      <article class="glass-card" data-anim="stagger-up">
+        <span class="card-number" aria-hidden="true">01</span>
+        <div class="glass-card-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12,2.5 14.5,9 21,9.5 16,14 17.7,21 12,17.5 6.3,21 8,14 3,9.5 9.5,9"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-xl lg:text-2xl mb-4 leading-tight" style="color: var(--ivory)">
+          Premium Positioning
+        </h3>
+        <p class="text-[14px] lg:text-[15px] leading-relaxed" style="color: rgba(245,239,226,0.82)">
+          Position yourself as the trusted expert in your niche so clients come to you ready to buy.
+        </p>
+      </article>
+
+      <!-- 02 Client Acquisition System -->
+      <article class="glass-card" data-anim="stagger-up">
+        <span class="card-number" aria-hidden="true">02</span>
+        <div class="glass-card-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <line x1="12" y1="8" x2="12" y2="13"/>
+            <circle cx="12" cy="16" r="0.7" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-xl lg:text-2xl mb-4 leading-tight" style="color: var(--ivory)">
+          Client Acquisition System
+        </h3>
+        <p class="text-[14px] lg:text-[15px] leading-relaxed" style="color: rgba(245,239,226,0.82)">
+          We bring you pre-qualified, high-paying clients, every month, without you running ads.
+        </p>
+      </article>
+
+      <!-- 03 Sales & Closing Support -->
+      <article class="glass-card" data-anim="stagger-up">
+        <span class="card-number" aria-hidden="true">03</span>
+        <div class="glass-card-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12c0 4.4-4 8-9 8-1.5 0-2.9-.3-4.2-.9L3 20l1.1-3.7C3.4 15.1 3 13.6 3 12c0-4.4 4-8 9-8s9 3.6 9 8z"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-xl lg:text-2xl mb-4 leading-tight" style="color: var(--ivory)">
+          Sales &amp; Closing Support
+        </h3>
+        <p class="text-[14px] lg:text-[15px] leading-relaxed" style="color: rgba(245,239,226,0.82)">
+          Proven scripts and guidance to close with confidence, no awkward selling, no manipulation.
+        </p>
+      </article>
+
+      <!-- 04 Onboarding & Delivery -->
+      <article class="glass-card" data-anim="stagger-up">
+        <span class="card-number" aria-hidden="true">04</span>
+        <div class="glass-card-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <polyline points="8 12 11 15 16 9"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-xl lg:text-2xl mb-4 leading-tight" style="color: var(--ivory)">
+          Onboarding &amp; Delivery
+        </h3>
+        <p class="text-[14px] lg:text-[15px] leading-relaxed" style="color: rgba(245,239,226,0.82)">
+          Streamlined systems to deliver amazing results, without burning out doing all the admin yourself.
+        </p>
+      </article>
+
+      <!-- 05 Retention & Upsells -->
+      <article class="glass-card" data-anim="stagger-up">
+        <span class="card-number" aria-hidden="true">05</span>
+        <div class="glass-card-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-xl lg:text-2xl mb-4 leading-tight" style="color: var(--ivory)">
+          Retention &amp; Upsells
+        </h3>
+        <p class="text-[14px] lg:text-[15px] leading-relaxed" style="color: rgba(245,239,226,0.82)">
+          Keep clients longer and grow their lifetime value with frameworks that turn one engagement into many.
+        </p>
+      </article>
+
+      <!-- 06 Ongoing Coaching -->
+      <article class="glass-card" data-anim="stagger-up">
+        <span class="card-number" aria-hidden="true">06</span>
+        <div class="glass-card-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 8h1a4 4 0 0 1 0 8h-1"/>
+            <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/>
+            <line x1="6" y1="2" x2="6" y2="5"/>
+            <line x1="10" y1="2" x2="10" y2="5"/>
+            <line x1="14" y1="2" x2="14" y2="5"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-xl lg:text-2xl mb-4 leading-tight" style="color: var(--ivory)">
+          Ongoing Coaching
+        </h3>
+        <p class="text-[14px] lg:text-[15px] leading-relaxed" style="color: rgba(245,239,226,0.82)">
+          We&rsquo;re with you every step of the way with direct support from real coaches who&rsquo;ve been where you are.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============= WHY THIS CIRCLE EXISTS.FOUNDER STORY ============= -->
+<section class="cost-section px-6 lg:px-12 py-20 lg:py-32">
+  <div class="founder-bg" aria-hidden="true"></div>
+
+  <div class="relative max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+
+    <!-- LEFT: portrait + signature -->
+    <div class="lg:col-span-5 order-2 lg:order-1 lg:pt-16 xl:pt-20">
+      <div class="founder-portrait max-w-[280px] sm:max-w-[340px] lg:max-w-[420px] xl:max-w-[480px] mx-auto lg:mx-0 lg:ml-auto">
+        <div class="founder-glow" aria-hidden="true"></div>
+        <img src="Assets/Full%20Body.png" alt="Coach Lish, Founder of Coach Circle" />
+      </div>
+
+      <div class="founder-signature">
+        <p class="font-display italic text-lg lg:text-xl mb-1" style="color: var(--ivory)">Lish
+        </p>
+        <p class="text-[12px] lg:text-[13px] font-semibold tracking-[0.18em] uppercase" style="color: rgba(212, 168, 87, 0.85)">
+          Founder &middot; Coach Circle
+        </p>
+      </div>
+    </div>
+
+    <!-- RIGHT: story -->
+    <div class="lg:col-span-7 order-1 lg:order-2">
+
+      <div class="eyebrow inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5 lg:mb-6">
+        <span aria-hidden="true" style="color: var(--gold-soft)">◆</span>
+        <span class="text-[10px] sm:text-[11px] lg:text-xs font-semibold tracking-[0.2em] uppercase" style="color: var(--gold-soft)">
+          Why This Circle Exists
+        </span>
+      </div>
+
+      <h2 class="headline text-[1.85rem] sm:text-[2.4rem] lg:text-[2.85rem] xl:text-[3.2rem] mb-7 lg:mb-9 leading-[1.05]">
+        The truth I don&rsquo;t usually
+        <span class="italic-accent">share.</span>
+      </h2>
+
+      <div class="founder-body text-[15px] lg:text-base">
+        <p>
+          I want to tell you something I don&rsquo;t usually share publicly.
+        </p>
+        <p>
+          For the past two years, I&rsquo;ve been at the lowest point of my life. <em>Hindi ko alam kung paano ako makakabalik sa sarili ko.</em> I lost myself.
+        </p>
+        <p>
+          And the only reason I made it through, the only reason I&rsquo;m standing here today is because of the coaches who were with me. <em>Coaches na hindi ako iniwan. Coaches na nagpakita ng tatag para sa akin noong hindi ko na magawa mismo para sa sarili ko.</em>
+        </p>
+        <p>
+          That&rsquo;s when I realized something I should&rsquo;ve known all along.
+        </p>
+        <p>
+          Pati ako. the &ldquo;Amazon Queen,&rdquo; the &ldquo;Coach Architect,&rdquo; the one people ask for advice. <em>I needed coaches too. I needed a circle.</em>
+        </p>
+
+        <p class="founder-pull text-[1.4rem] sm:text-[1.7rem] lg:text-[2rem] my-7 lg:my-9">
+          Everyone needs a coach. Even coaches. Especially coaches.
+        </p>
+
+        <p>
+          Coach Circle isn&rsquo;t just a platform to grow your business. It&rsquo;s the circle I wish existed when I needed one. A room where coaches hold each other up, not just for income, but for the harder moments when you can&rsquo;t hold yourself.
+        </p>
+        <p>
+          If you&rsquo;ve ever felt alone in this journey. <em>ito na &rsquo;yung room mo. Welcome home.</em>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============= INSIDE COACH CIRCLE.DAY ONE FEATURES ============= -->
+<section class="cost-section px-6 lg:px-12 py-20 lg:py-32">
+  <div class="cost-bg" aria-hidden="true"></div>
+
+  <div class="relative max-w-7xl mx-auto">
+
+    <div class="flex justify-center mb-6 lg:mb-8">
+      <div class="eyebrow inline-flex items-center gap-2 px-4 py-2 rounded-full">
+        <span aria-hidden="true" style="color: var(--gold-soft)">✦</span>
+        <span class="text-[10px] sm:text-[11px] lg:text-xs font-semibold tracking-[0.2em] uppercase" style="color: var(--gold-soft)">
+          What You Get On Day One
+        </span>
+      </div>
+    </div>
+
+    <h2 class="headline text-center text-[1.85rem] sm:text-[2.4rem] lg:text-[2.85rem] xl:text-[3.2rem] mb-5 lg:mb-6 max-w-4xl mx-auto">
+      Inside Coach Circle: Everything We Hand You
+      <span class="italic-accent">The Day You Join.</span>
+    </h2>
+
+    <p class="text-center max-w-2xl mx-auto text-[15px] lg:text-lg leading-relaxed mb-12 lg:mb-16" style="color: rgba(245,239,226,0.72)">
+      No hidden tiers. No upsells. This is what Contributing Coaches receive, free, the moment your application is approved.
+    </p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+
+      <!-- 01 Coach Profile -->
+      <article class="feature-card" data-tone="emerald" data-anim="stagger-up">
+        <span class="feature-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+        </span>
+        <div class="feature-num">01 &middot; Profile</div>
+        <h3 class="feature-title">Your Coach Profile</h3>
+        <p class="feature-body">A dedicated profile inside the platform, with your bio, niche, offer, and booking link. Students find you instantly.</p>
+      </article>
+
+      <!-- 02 Hosted Landing Page -->
+      <article class="feature-card" data-tone="emerald" data-anim="stagger-up">
+        <span class="feature-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="16" rx="2"/>
+            <line x1="3" y1="9" x2="21" y2="9"/>
+            <circle cx="6.5" cy="6.5" r="0.6" fill="currentColor"/>
+            <circle cx="9" cy="6.5" r="0.6" fill="currentColor"/>
+          </svg>
+        </span>
+        <div class="feature-num">02 &middot; Page</div>
+        <h3 class="feature-title">Hosted Landing Page</h3>
+        <p class="feature-body">A fully built, hosted landing page for your offer. Template-based, clean, conversion-ready. No tech setup required.</p>
+      </article>
+
+      <!-- 03 Bi-Monthly Mastermind -->
+      <article class="feature-card" data-tone="emerald" data-anim="stagger-up">
+        <span class="feature-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="6" width="14" height="12" rx="2"/>
+            <polygon points="16 10 22 7 22 17 16 14"/>
+          </svg>
+        </span>
+        <div class="feature-num">03 &middot; Mastermind</div>
+        <h3 class="feature-title">Bi-Monthly Zoom Mastermind</h3>
+        <p class="feature-body">Twice a month, one featured coach teaches. You learn, you network, you grow. Replay access always included.</p>
+      </article>
+
+      <!-- 04 Service Provider Deals -->
+      <article class="feature-card" data-tone="emerald" data-anim="stagger-up">
+        <span class="feature-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 12.9V3h9.9l8.7 8.7a2 2 0 0 1 0 2.8z"/>
+            <circle cx="7.5" cy="7.5" r="1.3" fill="currentColor"/>
+          </svg>
+        </span>
+        <div class="feature-num">04 &middot; Deals</div>
+        <h3 class="feature-title">Service Provider Deals</h3>
+        <p class="feature-body">Exclusive discounts from vetted video editors, designers, VAs, ad buyers, and tech partners, curated for coaches.</p>
+      </article>
+
+      <!-- 05 Payment Processing -->
+      <article class="feature-card" data-tone="emerald" data-anim="stagger-up">
+        <span class="feature-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="6" width="20" height="13" rx="2"/>
+            <line x1="2" y1="11" x2="22" y2="11"/>
+            <line x1="6" y1="15.5" x2="9" y2="15.5"/>
+          </svg>
+        </span>
+        <div class="feature-num">05 &middot; Payments</div>
+        <h3 class="feature-title">Platform Payment Processing</h3>
+        <p class="feature-body">Stripe, PayPal, GCash, bank transfer, all handled. You get paid on time, every time.</p>
+      </article>
+
+      <!-- 06 Affiliate Dashboard -->
+      <article class="feature-card" data-tone="emerald" data-anim="stagger-up">
+        <span class="feature-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.5 13.5a3.5 3.5 0 0 0 5 0l3-3a3.5 3.5 0 0 0-5-5l-1 1"/>
+            <path d="M13.5 10.5a3.5 3.5 0 0 0-5 0l-3 3a3.5 3.5 0 0 0 5 5l1-1"/>
+          </svg>
+        </span>
+        <div class="feature-num">06 &middot; Affiliate</div>
+        <h3 class="feature-title">Affiliate Dashboard</h3>
+        <p class="feature-body">Your referral link, real-time earnings tracker, and payout system. Watch your passive income build in real time.</p>
+      </article>
+
+      <!-- 07 Community Access -->
+      <article class="feature-card" data-tone="emerald" data-anim="stagger-up">
+        <span class="feature-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="8" r="3.2"/>
+            <circle cx="17" cy="9" r="2.5"/>
+            <path d="M3 19.5c0-3.2 2.7-5.2 6-5.2s6 2 6 5.2"/>
+            <path d="M14.5 18.5c0-2.4 1.5-3.8 2.9-3.8s2.9 1.4 2.9 3.8"/>
+          </svg>
+        </span>
+        <div class="feature-num">07 &middot; Community</div>
+        <h3 class="feature-title">Community Access</h3>
+        <p class="feature-body">Private Coach Circle community. Ask questions, share wins, and trade frameworks with coaches who actually do the work.</p>
+      </article>
+
+      <!-- 08 Content Exposure -->
+      <article class="feature-card" data-tone="emerald" data-anim="stagger-up">
+        <span class="feature-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 11l18-7v16l-18-7z"/>
+            <path d="M7 14v3a2 2 0 0 0 2 2h1"/>
+          </svg>
+        </span>
+        <div class="feature-num">08 &middot; Exposure</div>
+        <h3 class="feature-title">Ongoing Content Exposure</h3>
+        <p class="feature-body">Your best content featured across the Coach Circle platform, newsletter, and community, at zero cost to you.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============= HOW YOU EARN ============= -->
+<section class="cost-section px-6 lg:px-12 py-20 lg:py-32">
+  <div class="plain-bg" aria-hidden="true"></div>
+
+  <div class="relative max-w-7xl mx-auto">
+
+    <div class="flex justify-center mb-6 lg:mb-8">
+      <div class="eyebrow inline-flex items-center gap-2 px-4 py-2 rounded-full">
+        <span aria-hidden="true" style="color: var(--gold-soft)">✦</span>
+        <span class="text-[10px] sm:text-[11px] lg:text-xs font-semibold tracking-[0.2em] uppercase" style="color: var(--gold-soft)">
+          The Earning Model
+        </span>
+      </div>
+    </div>
+
+    <h2 class="headline text-center text-[1.85rem] sm:text-[2.4rem] lg:text-[2.85rem] xl:text-[3.2rem] mb-5 lg:mb-6 max-w-4xl mx-auto">
+      How You Earn: Your Expertise Becomes
+      <span class="italic-accent">Recurring Income.</span>
+    </h2>
+
+    <p class="text-center max-w-2xl mx-auto text-[15px] lg:text-lg leading-relaxed mb-12 lg:mb-16" style="color: rgba(245,239,226,0.72)">
+      Clean, transparent, coach-favored splits. You always know exactly what you&rsquo;ll earn, before you earn it.
+    </p>
+
+    <div class="earn-stack mb-10 lg:mb-14">
+
+      <!-- 01 Subscription Referrals -->
+      <article class="earn-card" data-bg="1" data-anim="slide-left">
+        <span class="earn-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="8" r="3.5"/>
+            <path d="M4 21c0-3.5 3-6 7-6s7 2.5 7 6"/>
+            <circle cx="18.5" cy="6.5" r="2.6"/>
+            <line x1="18.5" y1="5" x2="18.5" y2="8"/>
+            <line x1="17" y1="6.5" x2="20" y2="6.5"/>
+          </svg>
+        </span>
+        <div class="earn-content">
+          <div class="earn-num">01 &middot; Referrals</div>
+          <h3 class="earn-title">Student Subscription Referrals</h3>
+          <div class="earn-amount-row">
+            <span class="earn-amount-label">You Earn</span>
+            <span class="earn-amount">&#8369;2,000 <span class="earn-amount-sub">per subscription</span></span>
+          </div>
+          <p class="earn-body">Refer a student who signs up for the annual Coach Circle membership, and get paid per successful referral.</p>
+        </div>
+      </article>
+
+      <!-- 02 Course Sales (platform leads) -->
+      <article class="earn-card" data-bg="2" data-anim="slide-left">
+        <span class="earn-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+            <line x1="8" y1="14" x2="14" y2="14"/>
+            <circle cx="17" cy="14" r="0.7" fill="currentColor"/>
+          </svg>
+        </span>
+        <div class="earn-content">
+          <div class="earn-num">02 &middot; Splits</div>
+          <h3 class="earn-title">Your Course Sales &amp; Upsells</h3>
+          <div class="earn-amount-row">
+            <span class="earn-amount-label">Your Share</span>
+            <span class="earn-amount">80/20 <span class="earn-amount-sub">coach favored</span></span>
+          </div>
+          <p class="earn-body">When a student buys your course or upsell through Coach Circle platform leads, you keep 80%.</p>
+        </div>
+      </article>
+
+      <!-- 03 Sales From Your Own Traffic -->
+      <article class="earn-card" data-bg="3" data-anim="slide-left">
+        <span class="earn-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 17 9 11 13 15 21 7"/>
+            <polyline points="14 7 21 7 21 14"/>
+          </svg>
+        </span>
+        <div class="earn-content">
+          <div class="earn-num">03 &middot; Independence</div>
+          <h3 class="earn-title">Your Brand Stays Yours</h3>
+          <div class="earn-amount-row">
+            <span class="earn-amount-label">Platform Cut</span>
+            <span class="earn-amount">0% <span class="earn-amount-sub">guaranteed</span></span>
+          </div>
+          <p class="earn-body">Coach Circle is built to grow you, not to own you. Your audience, your email list, your website remain 100% yours. Use the platform alongside your business, never in place of it.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Fair-play rule -->
+    <div class="fairplay max-w-3xl mx-auto" data-anim="slam">
+      <span class="fairplay-icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="3" x2="12" y2="21"/>
+          <path d="M5 8 L8 14 L2 14 Z"/>
+          <path d="M19 8 L22 14 L16 14 Z"/>
+          <line x1="5" y1="8" x2="19" y2="8"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+        </svg>
+      </span>
+      <div>
+        <div class="text-[10px] lg:text-[11px] font-bold tracking-[0.2em] uppercase mb-1.5" style="color: var(--gold)">
+          The Fair-Play Rule
+        </div>
+        <p class="text-[13.5px] lg:text-[14.5px] leading-relaxed" style="color: rgba(245, 239, 226, 0.85)">
+          Coach Circle only earns on leads the platform generates for you. <strong style="color: var(--ivory); font-weight: 600">Your own audience remains entirely yours</strong>.forever.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============= HOW IT WORKS ============= -->
+<section class="cost-section px-6 lg:px-12 py-20 lg:py-32">
+  <div class="cost-bg" aria-hidden="true"></div>
+
+  <div class="relative max-w-7xl mx-auto">
+
+    <div class="flex justify-center mb-6 lg:mb-8">
+      <div class="eyebrow inline-flex items-center gap-2 px-4 py-2 rounded-full">
+        <span aria-hidden="true" style="color: var(--gold-soft)">✦</span>
+        <span class="text-[10px] sm:text-[11px] lg:text-xs font-semibold tracking-[0.2em] uppercase" style="color: var(--gold-soft)">
+          How To Join
+        </span>
+      </div>
+    </div>
+
+    <h2 class="headline text-center text-[1.85rem] sm:text-[2.4rem] lg:text-[3rem] xl:text-[3.4rem] mb-12 lg:mb-16 max-w-4xl mx-auto">
+      How It Works: Three Steps To
+      <span class="italic-accent">Join The Movement.</span>
+    </h2>
+
+    <div class="step-grid grid md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
+
+      <!-- STEP 1.Apply Free -->
+      <article class="step-card" data-anim="stagger-up">
+        <div class="step-icon">
+          <svg width="84" height="84" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="s1a" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#60A5FA"/>
+                <stop offset="100%" stop-color="#2563EB"/>
+              </linearGradient>
+              <linearGradient id="s1b" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FCD34D"/>
+                <stop offset="100%" stop-color="#F59E0B"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="40" cy="73" rx="20" ry="3" fill="#000" opacity="0.28"/>
+            <rect x="18" y="14" width="44" height="56" rx="6" fill="url(#s1a)"/>
+            <rect x="18" y="14" width="44" height="22" rx="6" fill="#fff" opacity="0.16"/>
+            <rect x="30" y="9" width="20" height="9" rx="2.5" fill="#1E40AF"/>
+            <rect x="34" y="11" width="12" height="3" rx="1.5" fill="#93C5FD"/>
+            <rect x="26" y="36" width="28" height="3" rx="1.5" fill="#fff" opacity="0.9"/>
+            <rect x="26" y="44" width="28" height="3" rx="1.5" fill="#fff" opacity="0.9"/>
+            <rect x="26" y="52" width="20" height="3" rx="1.5" fill="#fff" opacity="0.9"/>
+            <g transform="translate(46 44) rotate(35)">
+              <rect x="0" y="0" width="18" height="5" rx="1.5" fill="url(#s1b)"/>
+              <polygon points="18,0 23,2.5 18,5" fill="#92400E"/>
+              <rect x="-3" y="0" width="3" height="5" fill="#FBBF24"/>
+            </g>
+          </svg>
+        </div>
+        <div class="step-label">Step 1</div>
+        <h3 class="step-title">Apply Free</h3>
+        <p class="step-body">Fill out the short application. Tell us about your coaching practice and what you&rsquo;d contribute to the circle.</p>
+      </article>
+
+      <!-- STEP 2.Get Approved -->
+      <article class="step-card" data-anim="stagger-up">
+        <div class="step-icon">
+          <svg width="84" height="84" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="s2a" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#34D399"/>
+                <stop offset="100%" stop-color="#059669"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="40" cy="73" rx="22" ry="3" fill="#000" opacity="0.3"/>
+            <path d="M40 10 Q60 17 60 22 V42 Q60 58 40 70 Q20 58 20 42 V22 Q20 17 40 10 Z" fill="url(#s2a)"/>
+            <path d="M40 10 Q50 13 53 18 V36 Q52 46 44 54 Q42 56 40 56 V10 Z" fill="#fff" opacity="0.18"/>
+            <path d="M30 40 L37 47 L52 30" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="60" cy="20" r="2" fill="#FBBF24"/>
+            <circle cx="18" cy="34" r="1.6" fill="#FBBF24"/>
+          </svg>
+        </div>
+        <div class="step-label">Step 2</div>
+        <h3 class="step-title">Get Approved</h3>
+        <p class="step-body">We review within 48 hours. Once approved, your profile and landing page are set up within the week.</p>
+      </article>
+
+      <!-- STEP 3.Start Earning -->
+      <article class="step-card" data-anim="stagger-up">
+        <div class="step-icon">
+          <svg width="84" height="84" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="s3a" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#FCD34D"/>
+                <stop offset="100%" stop-color="#D97706"/>
+              </linearGradient>
+              <linearGradient id="s3b" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FEF3C7"/>
+                <stop offset="100%" stop-color="#F59E0B"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="40" cy="74" rx="24" ry="3" fill="#000" opacity="0.28"/>
+            <!-- bottom coin -->
+            <rect x="18" y="56" width="44" height="6" fill="url(#s3a)"/>
+            <ellipse cx="40" cy="56" rx="22" ry="6" fill="url(#s3a)"/>
+            <ellipse cx="40" cy="55" rx="22" ry="6" fill="url(#s3b)"/>
+            <!-- middle coin -->
+            <rect x="18" y="42" width="44" height="6" fill="url(#s3a)"/>
+            <ellipse cx="40" cy="42" rx="22" ry="6" fill="url(#s3a)"/>
+            <ellipse cx="40" cy="41" rx="22" ry="6" fill="url(#s3b)"/>
+            <!-- top coin -->
+            <rect x="18" y="28" width="44" height="6" fill="url(#s3a)"/>
+            <ellipse cx="40" cy="28" rx="22" ry="6" fill="url(#s3a)"/>
+            <ellipse cx="40" cy="27" rx="22" ry="6" fill="url(#s3b)"/>
+            <text x="40" y="32" font-size="14" font-weight="900" fill="#92400E" text-anchor="middle" font-family="Georgia, serif">&#8369;</text>
+            <!-- sparkles -->
+            <g fill="#FCD34D">
+              <circle cx="14" cy="18" r="2"/>
+              <circle cx="68" cy="14" r="1.6"/>
+              <circle cx="64" cy="22" r="1.2"/>
+              <circle cx="12" cy="38" r="1.4"/>
+            </g>
+          </svg>
+        </div>
+        <div class="step-label">Step 3</div>
+        <h3 class="step-title">Start Earning</h3>
+        <p class="step-body">Attend masterminds, contribute content, refer students. Your circle, your infrastructure, your income, active.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============= IS THIS FOR YOU? ============= -->
+<section class="cost-section px-6 lg:px-12 py-20 lg:py-32">
+  <div class="cost-bg" aria-hidden="true"></div>
+
+  <div class="relative max-w-7xl mx-auto">
+
+    <div class="flex justify-center mb-6 lg:mb-8">
+      <div class="eyebrow inline-flex items-center gap-2 px-4 py-2 rounded-full">
+        <span aria-hidden="true" style="color: var(--gold-soft)">✦</span>
+        <span class="text-[10px] sm:text-[11px] lg:text-xs font-semibold tracking-[0.2em] uppercase" style="color: var(--gold-soft)">
+          Fit Check
+        </span>
+      </div>
+    </div>
+
+    <h2 class="headline text-center text-[1.85rem] sm:text-[2.4rem] lg:text-[3rem] xl:text-[3.4rem] mb-12 lg:mb-16 max-w-4xl mx-auto">
+      Is This For You?
+      <span class="italic-accent">Coach Circle Is A Fit If&hellip;</span>
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-5 items-center">
+
+      <!-- 1 - Active Coach -->
+      <article class="fit-card" data-anim="stagger-up">
+        <div class="fit-icon">
+          <svg width="60" height="60" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="f1a" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FCD34D"/>
+                <stop offset="100%" stop-color="#F97316"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="40" cy="72" rx="14" ry="2.5" fill="#000" opacity="0.18"/>
+            <path d="M44 8 L20 44 H34 L30 70 L60 30 H42 Z" fill="url(#f1a)"/>
+            <path d="M40 14 L26 40 H32" fill="#fff" opacity="0.35"/>
+          </svg>
+        </div>
+        <h3 class="fit-title">Active Coach</h3>
+        <p class="fit-body">You&rsquo;re an active coach, consultant, or expert, not a beginner looking for certification.</p>
+      </article>
+
+      <!-- 2 - Real Expertise -->
+      <article class="fit-card" data-anim="stagger-up">
+        <div class="fit-icon">
+          <svg width="60" height="60" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="f2a" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#FBBF24"/>
+                <stop offset="100%" stop-color="#B45309"/>
+              </linearGradient>
+              <linearGradient id="f2b" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#92400E"/>
+                <stop offset="100%" stop-color="#78350F"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="40" cy="74" rx="18" ry="2.5" fill="#000" opacity="0.22"/>
+            <path d="M28 18 H52 V36 Q52 50 40 50 Q28 50 28 36 Z" fill="url(#f2a)"/>
+            <path d="M28 22 Q18 22 18 30 Q18 38 28 38" fill="none" stroke="url(#f2a)" stroke-width="4" stroke-linecap="round"/>
+            <path d="M52 22 Q62 22 62 30 Q62 38 52 38" fill="none" stroke="url(#f2a)" stroke-width="4" stroke-linecap="round"/>
+            <rect x="35" y="50" width="10" height="10" fill="url(#f2b)"/>
+            <rect x="26" y="60" width="28" height="6" rx="2" fill="url(#f2b)"/>
+            <ellipse cx="34" cy="26" rx="3" ry="6" fill="#fff" opacity="0.4"/>
+            <text x="40" y="38" font-size="14" font-weight="900" fill="#fff" text-anchor="middle" opacity="0.85">★</text>
+          </svg>
+        </div>
+        <h3 class="fit-title">Real Expertise</h3>
+        <p class="fit-body">You have real expertise in your niche and can contribute to at least one mastermind per quarter.</p>
+      </article>
+
+      <!-- 3 - Collaboration (HIGHLIGHTED) -->
+      <article class="fit-card highlight" data-anim="stagger-up">
+        <div class="fit-icon">
+          <svg width="60" height="60" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="f3a" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FFFFFF"/>
+                <stop offset="100%" stop-color="#A7F3D0"/>
+              </linearGradient>
+              <linearGradient id="f3b" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FCD34D"/>
+                <stop offset="100%" stop-color="#FBBF24"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="40" cy="72" rx="22" ry="2.5" fill="#000" opacity="0.22"/>
+            <circle cx="30" cy="40" r="14" fill="none" stroke="url(#f3a)" stroke-width="6"/>
+            <circle cx="50" cy="40" r="14" fill="none" stroke="url(#f3b)" stroke-width="6"/>
+          </svg>
+        </div>
+        <h3 class="fit-title">Collaboration &gt; Competition</h3>
+        <p class="fit-body">You believe collaboration beats competition, that other coaches are allies, not rivals.</p>
+      </article>
+
+      <!-- 4 - Done With DIY Tech -->
+      <article class="fit-card" data-anim="stagger-up">
+        <div class="fit-icon">
+          <svg width="60" height="60" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="f4a" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FB7185"/>
+                <stop offset="100%" stop-color="#DC2626"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="40" cy="72" rx="22" ry="2.5" fill="#000" opacity="0.22"/>
+            <circle cx="40" cy="40" r="26" fill="url(#f4a)"/>
+            <circle cx="32" cy="32" r="9" fill="#fff" opacity="0.22"/>
+            <rect x="14" y="36" width="52" height="8" rx="3" fill="#fff" transform="rotate(-45 40 40)"/>
+          </svg>
+        </div>
+        <h3 class="fit-title">Done With DIY Tech</h3>
+        <p class="fit-body">You&rsquo;re tired of doing tech, funnels, and marketing alone, and ready to plug into infrastructure.</p>
+      </article>
+
+      <!-- 5 - Recurring Income -->
+      <article class="fit-card" data-anim="stagger-up">
+        <div class="fit-icon">
+          <svg width="60" height="60" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="f5a" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#A78BFA"/>
+                <stop offset="100%" stop-color="#3B82F6"/>
+              </linearGradient>
+              <linearGradient id="f5b" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FCD34D"/>
+                <stop offset="100%" stop-color="#F59E0B"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="40" cy="72" rx="22" ry="2.5" fill="#000" opacity="0.22"/>
+            <path d="M40 14 A26 26 0 1 1 16 30" fill="none" stroke="url(#f5a)" stroke-width="7" stroke-linecap="round"/>
+            <polygon points="40,8 52,20 40,32" fill="url(#f5a)"/>
+            <text x="40" y="52" font-size="22" font-weight="900" fill="url(#f5b)" text-anchor="middle" font-family="Georgia, serif">&#8369;</text>
+          </svg>
+        </div>
+        <h3 class="fit-title">Recurring Income</h3>
+        <p class="fit-body">You want recurring income that works while you sleep, not just launch spikes.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============= APPLY / FINAL CTA ============= -->
+<section id="apply" class="cost-section px-6 lg:px-12 py-20 lg:py-32">
+  <div class="cost-bg" aria-hidden="true"></div>
+
+  <div class="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-14 xl:gap-20 items-center">
+
+    <!-- LEFT: Pitch + CTA -->
+    <div class="text-center lg:text-left">
+
+      <div class="flex justify-center lg:justify-start mb-6 lg:mb-7">
+        <div class="eyebrow inline-flex items-center gap-2 px-4 py-2 rounded-full">
+          <span aria-hidden="true" style="color: var(--gold-soft)">✦</span>
+          <span class="text-[10px] sm:text-[11px] lg:text-xs font-semibold tracking-[0.2em] uppercase" style="color: var(--gold-soft)">
+            Ready To Join?
+          </span>
+        </div>
+      </div>
+
+      <h2 class="headline text-[2.1rem] sm:text-[2.6rem] lg:text-[3rem] xl:text-[3.6rem] mb-5 lg:mb-6 leading-[1.05]">
+        Your Circle Is
+        <span class="italic-accent">Waiting.</span>
+      </h2>
+
+      <p class="text-[15px] sm:text-base lg:text-[17px] mb-8 lg:mb-9 leading-relaxed lg:max-w-xl" style="color: rgba(245, 239, 226, 0.82)">
+        Stop building alone. Start building together. Let&rsquo;s put your expertise inside an ecosystem that pays you back, and introduces you to coaches who&rsquo;ve got your back.
+      </p>
+
+      <ul class="apply-trust mb-8 lg:mb-10">
+        <li><span class="checkmark" aria-hidden="true">✓</span> 100% Free to Join</li>
+        <li><span class="checkmark" aria-hidden="true">✓</span> 48-Hour Review</li>
+        <li><span class="checkmark" aria-hidden="true">✓</span> Premium Placement</li>
+        <li><span class="checkmark" aria-hidden="true">✓</span> Done-For-You Setup</li>
+      </ul>
+
+      <div class="flex justify-center lg:justify-start">
+        <a href="#apply-form" class="join-banner">
+          <span>Join Free Now</span>
+          <span class="arrow-anim" aria-hidden="true">&#10148;</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Embedded application form -->
+    <div id="apply-form" class="form-card" data-anim="slam">
+      <div class="form-iframe-wrap">
+        <iframe
+          src="https://go.coachcircle.ph/widget/form/bpXQYrzJFhr3KFhkK5dr"
+          style="width:100%;height:100%;border:none;border-radius:8px"
+          id="inline-bpXQYrzJFhr3KFhkK5dr"
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="Coaching Cirle"
+          data-height="463"
+          data-layout-iframe-id="inline-bpXQYrzJFhr3KFhkK5dr"
+          data-form-id="bpXQYrzJFhr3KFhkK5dr"
+          title="Coaching Cirle">
+        </iframe>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============= FOOTER ============= -->
+<footer class="site-footer">
+  <img src="Assets/Logo.png" alt="Coach Circle" class="footer-logo" />
+  <p class="footer-quote">
+    &ldquo;Build your coaching practice with a circle around you, not alone.&rdquo;
+  </p>
+  <p class="footer-brand">Coach Circle &middot; For Coaches, By Coaches
+  </p>
+</footer>
+
+<!-- Coach Circle form embed loader -->
+<script src="https://go.coachcircle.ph/js/form_embed.js"></script>
+
+<script>
+(function () {
+  if (!('IntersectionObserver' in window)) {
+    // Fallback: just reveal everything immediately
+    document. querySelectorAll('[data-anim]'). forEach(el => el.classList.add('in-view'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries. forEach((entry) => {
+      if (entry. isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer. unobserve(entry. target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+  document. querySelectorAll('[data-anim]'). forEach((el) => observer. observe(el));
+
+  // 3D tilt for Section 2 glass-cards (cursor-following).only on hover-capable devices
+  const reduceMotion = window. matchMedia('(prefers-reduced-motion: reduce)'). matches;
+  const hasHover = window. matchMedia('(hover: hover) and (pointer: fine)'). matches;
+
+  if (!reduceMotion && hasHover) {
+    document. querySelectorAll('. glass-card'). forEach((card) => {
+      card. addEventListener('mousemove', (e) => {
+        const rect = card. getBoundingClientRect();
+        const px = (e. clientX - rect. left) / rect. width;
+        const py = (e. clientY - rect. top) / rect. height;
+        const rotateX = (py - 0.5) * -8;
+        const rotateY = (px - 0.5) * 8;
+        card.style.transition = 'none';
+        card.style.transform =
+          'perspective(1100px) rotateX(' + rotateX. toFixed(2) + 'deg) rotateY(' + rotateY. toFixed(2) + 'deg) translateY(-4px)';
+      });
+      card. addEventListener('mouseleave', () => {
+        card.style.transition = '';
+        card.style.transform = '';
+      });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

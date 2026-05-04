@@ -1,0 +1,26 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Vercel
+.vercel
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+
+# Python (rembg artifacts)
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+
+# Temp
+*.tmp
