@@ -3,12 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script>document.documentElement.classList.add('js');</script>
 <title>You're In The Room. Coach Circle</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
 <style>
   :root {
     --navy-deep: #0A1628;
@@ -21,7 +19,10 @@
     --emerald-glow: #34D399;
   }
 
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   * { -webkit-font-smoothing: antialiased; }
+  img, svg, video { display: block; vertical-align: middle; }
+  img, video { max-width: 100%; height: auto; }
   html, body { background: #050D24; }
   body {
     font-family: 'Manrope', sans-serif;
@@ -48,6 +49,11 @@
   }
 
   .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
     border: 1px solid rgba(212, 168, 87, 0.42);
     background: rgba(20, 37, 62, 0.45);
     backdrop-filter: blur(6px);
@@ -71,6 +77,116 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     opacity: 0.35;
     mix-blend-mode: overlay;
+  }
+
+  /* ===== LAYOUT ===== */
+  .site-header {
+    padding: 1.25rem 1.5rem;
+  }
+  .site-header-inner {
+    max-width: 80rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header-logo {
+    height: 3rem;
+    width: auto;
+  }
+
+  .hero-section {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+  .hero-inner {
+    max-width: 48rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .eyebrow-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .eyebrow-text {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .hero-headline {
+    font-size: 2.1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.05;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    max-width: 36rem;
+    margin: 0 auto 3rem;
+    line-height: 1.625;
+    color: rgba(245, 239, 226, 0.82);
+  }
+
+  .steps-section {
+    padding: 0 1.5rem 3rem;
+  }
+  .steps-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .closing-section {
+    text-align: center;
+    margin-top: 3.5rem;
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .closing-highlight {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    color: var(--gold-soft);
+  }
+  .closing-body {
+    font-size: 13.5px;
+    line-height: 1.625;
+    color: rgba(245, 239, 226, 0.65);
+  }
+
+  @media (min-width: 640px) {
+    .eyebrow-text { font-size: 11px; }
+    .hero-headline { font-size: 2.7rem; }
+    .hero-sub { font-size: 1rem; }
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .site-header { padding: 1.5rem 3rem; }
+    .header-logo { height: 4rem; }
+    .hero-section { padding: 3rem 3rem 2.5rem; }
+    .eyebrow-text { font-size: 0.75rem; }
+    .hero-headline { font-size: 3.5rem; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.125rem; margin-bottom: 4rem; }
+    .steps-section { padding: 0 3rem 5rem; }
+    .steps-grid { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .closing-section { margin-top: 5rem; }
+    .closing-highlight { font-size: 1.5rem; }
+    .closing-body { font-size: 15px; }
+  }
+
+  @media (min-width: 1280px) {
+    .hero-headline { font-size: 4rem; }
   }
 
   /* Big success checkmark badge */
@@ -246,17 +362,17 @@
   <div class="plain-bg" aria-hidden="true"></div>
 
   <!-- Header -->
-  <header class="px-6 lg:px-12 py-5 lg:py-6">
-    <div class="max-w-7xl mx-auto flex items-center justify-center">
+  <header class="site-header">
+    <div class="site-header-inner">
       <a href="/" aria-label="Coach Circle home">
-        <img src="Assets/Logo.png" alt="Coach Circle" class="h-12 lg:h-16 w-auto" />
+        <img src="Assets/Logo.png" alt="Coach Circle" class="header-logo" />
       </a>
     </div>
   </header>
 
   <!-- Confirmation hero -->
-  <section class="px-6 lg:px-12 pt-8 pb-6 lg:pt-12 lg:pb-10">
-    <div class="max-w-3xl mx-auto text-center">
+  <section class="hero-section">
+    <div class="hero-inner">
 
       <div class="success-badge" aria-hidden="true">
         <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -264,21 +380,21 @@
         </svg>
       </div>
 
-      <div class="fade-1 flex justify-center mb-6">
-        <div class="eyebrow inline-flex items-center gap-2 px-4 py-2 rounded-full">
+      <div class="eyebrow-wrap fade-1">
+        <div class="eyebrow">
           <span aria-hidden="true" style="color: var(--gold-soft)">&#10022;</span>
-          <span class="text-[10px] sm:text-[11px] lg:text-xs font-semibold tracking-[0.2em] uppercase" style="color: var(--gold-soft)">
+          <span class="eyebrow-text" style="color: var(--gold-soft)">
             Application Received
           </span>
         </div>
       </div>
 
-      <h1 class="headline fade-2 text-[2.1rem] sm:text-[2.7rem] lg:text-[3.5rem] xl:text-[4rem] mb-6 lg:mb-7 leading-[1.05]">
+      <h1 class="headline hero-headline fade-2">
         You&rsquo;re In The
         <span class="italic-accent">Room.</span>
       </h1>
 
-      <p class="fade-3 text-[15px] sm:text-base lg:text-lg max-w-xl mx-auto mb-12 lg:mb-16 leading-relaxed" style="color: rgba(245, 239, 226, 0.82)">
+      <p class="hero-sub fade-3">
         Your application is in. Real coaches review every submission, no bots, no automated forms. Here&rsquo;s exactly what happens next.
       </p>
 
@@ -286,10 +402,10 @@
   </section>
 
   <!-- Next Steps Timeline -->
-  <section class="px-6 lg:px-12 pb-12 lg:pb-20">
-    <div class="max-w-6xl mx-auto">
+  <section class="steps-section">
+    <div class="steps-inner">
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+      <div class="steps-grid">
 
         <article class="next-step step-1">
           <span class="step-icon" aria-hidden="true">
@@ -348,11 +464,11 @@
       </div>
 
       <!-- Closing message -->
-      <div class="closing text-center mt-14 lg:mt-20 max-w-2xl mx-auto">
-        <p class="font-display italic text-lg lg:text-2xl mb-4" style="color: var(--gold-soft)">
+      <div class="closing closing-section">
+        <p class="closing-highlight">
           Watch your inbox over the next 48 hours.
         </p>
-        <p class="text-[13.5px] lg:text-[15px] leading-relaxed" style="color: rgba(245, 239, 226, 0.65)">
+        <p class="closing-body">
           If our email doesn&rsquo;t land in your main inbox, check your Promotions or Spam folder, and mark us as safe so the founding coach details reach you on time.
         </p>
       </div>
